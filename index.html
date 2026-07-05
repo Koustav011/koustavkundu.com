@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Koustav Kundu — Product Manager & Builder</title>
+  <meta name="description" content="Koustav Kundu — Product Manager, Business Loans Group at ICICI Bank, Mumbai. Lending products, portfolio automation, and after-hours builds with Python and a Raspberry Pi." />
+  <meta property="og:title" content="Koustav Kundu — Product Manager & Builder" />
+  <meta property="og:description" content="Lending products by day. A builder's lab by night." />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon: navy tile, marigold K -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B1F3A'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-weight='700' font-size='36' fill='%23EC9B29' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E" />
+
+  <!-- Fonts: Bricolage Grotesque (display) · Public Sans (body) · Spline Sans Mono (data/labels) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Public+Sans:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS
+       Annual-report palette: deep navy ink + marigold accent
+       on cool paper. Widths & heights in the hero chart encode
+       real career data (duration → width, scope → height).
+       ============================================================ */
+    :root {
+      --paper:   #F4F6F8;
+      --panel:   #FFFFFF;
+      --ink:     #0B1F3A;
+      --ink-2:   #3B4C63;
+      --navy:    #10294A;
+      --accent:  #EC9B29;
+      --accent-deep: #C77E12;
+      --gain:    #0F8A5F;
+      --line:    #D8DEE7;
+      --line-navy: #2A4066;
+
+      --font-display: "Bricolage Grotesque", Georgia, serif;
+      --font-body: "Public Sans", -apple-system, "Segoe UI", sans-serif;
+      --font-mono: "Spline Sans Mono", "Courier New", monospace;
+
+      --radius: 14px;
+      --radius-sm: 8px;
+      --wrap: 1120px;
+      --shadow: 0 1px 2px rgba(11,31,58,.06), 0 10px 30px -12px rgba(11,31,58,.14);
+    }
+
+    /* ---------- Reset & base ---------- */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid var(--accent-deep); outline-offset: 3px; border-radius: 3px; }
+    ::selection { background: var(--accent); color: var(--navy); }
+
+    .wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: clamp(1.1rem, 4vw, 2rem); }
+    section { scroll-margin-top: 96px; }
+
+    .mono {
+      font-family: var(--font-mono);
+      font-size: .72rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ink-2);
+    }
+
+    /* ============================================================
+       HEADER
+       ============================================================ */
+    .site-header {
+      position: sticky; top: 0; z-index: 50;
+      background: color-mix(in srgb, var(--paper) 88%, transparent);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid transparent;
+      transition: border-color .3s ease, box-shadow .3s ease;
+    }
+    .site-header.scrolled { border-bottom-color: var(--line); box-shadow: 0 6px 20px -14px rgba(11,31,58,.25); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 64px; }
+    .brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; letter-spacing: .01em; }
+    .brand-mark { width: 12px; height: 12px; background: var(--accent); border-radius: 3px; transform: rotate(45deg); flex: none; }
+    .site-nav { display: flex; align-items: center; gap: 1.4rem; }
+    .site-nav a {
+      font-family: var(--font-mono); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase;
+      text-decoration: none; color: var(--ink-2); padding-block: .3rem;
+      border-bottom: 2px solid transparent; transition: color .2s, border-color .2s;
+    }
+    .site-nav a:hover { color: var(--ink); border-bottom-color: var(--accent); }
+    .clock { font-family: var(--font-mono); font-size: .74rem; letter-spacing: .1em; color: var(--ink-2); white-space: nowrap; }
+
+    /* ============================================================
+       HERO — thesis + the career waterfall
+       ============================================================ */
+    .hero { padding-block: clamp(3.2rem, 8vw, 5.5rem) clamp(2.6rem, 6vw, 4rem); }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(2rem, 5vw, 4rem); align-items: end; }
+
+    .hero .eyebrow { margin-bottom: 1.1rem; color: var(--accent-deep); }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5.6vw, 4.3rem);
+      font-weight: 750;
+      line-height: 1.04;
+      letter-spacing: -0.015em;
+      font-variation-settings: "opsz" 80;
+    }
+    .hero h1 .accent-line { color: var(--accent-deep); }
+    .hero .lede { margin-top: 1.4rem; max-width: 34rem; font-size: 1.1rem; color: var(--ink-2); }
+    .hero .lede strong { color: var(--ink); font-weight: 600; }
+
+    .cta-row { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.8rem; }
+    .btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: var(--font-mono); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
+      text-decoration: none; padding: .8rem 1.35rem; border-radius: 999px;
+      border: 1.5px solid var(--ink); transition: transform .15s ease, background .2s, color .2s, border-color .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn--solid { background: var(--ink); color: var(--paper); }
+    .btn--solid:hover { background: var(--navy); }
+    .btn--ghost { background: transparent; color: var(--ink); }
+    .btn--ghost:hover { border-color: var(--accent-deep); color: var(--accent-deep); }
+
+    .hero-micro { margin-top: 1.3rem; }
+
+    /* ----- Career waterfall chart (pure CSS) -----
+       Column WIDTH  = time spent (flex-grow ≈ years)
+       Column HEIGHT = scope of the role                    */
+    .chart { position: relative; }
+    .chart-frame {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.4rem 1.4rem 1rem;
+    }
+    .chart-title { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.1rem; gap: 1rem; }
+    .chart-title .mono:last-child { color: var(--gain); letter-spacing: .08em; }
+    .bars {
+      display: flex; align-items: flex-end; gap: clamp(.4rem, 1.2vw, .8rem);
+      height: 250px;
+      background:
+        repeating-linear-gradient(to top, transparent 0 49px, var(--line) 49px 50px);
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 0;
+    }
+    .col { position: relative; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; min-width: 0; }
+    .bar {
+      position: relative;
+      border-radius: 6px 6px 0 0;
+      background: var(--navy);
+      height: var(--h);
+      transform-origin: bottom;
+    }
+    .bar--outline { background: transparent; border: 2px dashed var(--ink-2); border-bottom: none; }
+    .bar--accent { background: var(--accent); }
+    .bar--next { background: transparent; border: 2px dashed var(--accent-deep); border-bottom: none; }
+    .col:hover .bar, .col:focus-within .bar { filter: brightness(1.12); }
+    .tip {
+      position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(4px);
+      background: var(--ink); color: var(--paper);
+      font-family: var(--font-mono); font-size: .68rem; letter-spacing: .04em;
+      padding: .45rem .65rem; border-radius: 6px; white-space: nowrap;
+      opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease; z-index: 5;
+    }
+    .tip::after { content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: var(--ink); }
+    .col:hover .tip, .col:focus-within .tip { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .col-label {
+      margin-top: .55rem; text-align: center;
+      font-family: var(--font-mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--ink-2); line-height: 1.35; white-space: nowrap;
+    }
+    .chart-caption { margin-top: .9rem; text-align: right; }
+
+    /* ============================================================
+       TICKER STRIP
+       ============================================================ */
+    .ticker { border-block: 1px solid var(--line); background: var(--panel); overflow: hidden; }
+    .ticker-track { display: flex; width: max-content; gap: 2.75rem; padding-block: .72rem; animation: tick 42s linear infinite; }
+    .ticker:hover .ticker-track { animation-play-state: paused; }
+    .ticker-item { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); white-space: nowrap; }
+    .ticker-item .up { color: var(--gain); }
+    @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ============================================================
+       SECTIONS — shared scaffolding
+       ============================================================ */
+    .section { padding-block: clamp(3.2rem, 8vw, 5.5rem); }
+    .section-head { display: grid; grid-template-columns: 220px 1fr; gap: 1rem 3rem; margin-bottom: 2.4rem; align-items: start; }
+    .section-head h2 {
+      font-family: var(--font-display); font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+      font-weight: 700; line-height: 1.1; letter-spacing: -0.01em;
+    }
+    .section-kicker { padding-top: .5rem; color: var(--accent-deep); }
+
+    /* ---------- About ---------- */
+    .about-grid { display: grid; grid-template-columns: 220px 1fr; gap: 1rem 3rem; }
+    .about-copy { max-width: 42rem; display: grid; gap: 1.15rem; color: var(--ink-2); }
+    .about-copy strong { color: var(--ink); font-weight: 600; }
+
+    /* ---------- Experience ---------- */
+    .jobs { display: grid; gap: 1.2rem; }
+    .job {
+      background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: clamp(1.4rem, 3vw, 2rem); box-shadow: var(--shadow);
+    }
+    .job-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .5rem 1.5rem; margin-bottom: .3rem; }
+    .job h3 { font-family: var(--font-display); font-size: 1.32rem; font-weight: 700; letter-spacing: -0.005em; }
+    .job .period {
+      font-family: var(--font-mono); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--ink); background: var(--paper); border: 1px solid var(--line);
+      padding: .3rem .7rem; border-radius: 999px; white-space: nowrap;
+    }
+    .job .org { font-family: var(--font-mono); font-size: .76rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 1.1rem; }
+    .job ul { list-style: none; display: grid; gap: .65rem; color: var(--ink-2); }
+    .job li { padding-left: 1.4rem; position: relative; }
+    .job li::before { content: "—"; position: absolute; left: 0; color: var(--accent-deep); }
+
+    /* Current role: inverted card */
+    .job--now { background: var(--navy); border-color: var(--line-navy); color: #E9EEF6; }
+    .job--now h3 { color: #FFFFFF; }
+    .job--now .org { color: #9FB1CC; }
+    .job--now .period { background: transparent; border-color: var(--line-navy); color: var(--accent); }
+    .job--now ul { color: #C6D2E4; }
+    .job--now li::before { color: var(--accent); }
+
+    /* ---------- Lab / projects ---------- */
+    .lab-note { max-width: 42rem; color: var(--ink-2); margin-top: -1.4rem; margin-bottom: 2.2rem; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.2rem; }
+    .card {
+      background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 1.5rem; display: flex; flex-direction: column; gap: .7rem;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--accent); }
+    .card h3 { font-family: var(--font-display); font-size: 1.13rem; font-weight: 700; }
+    .card p { color: var(--ink-2); font-size: .96rem; flex: 1; }
+    .tags { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .tag {
+      font-family: var(--font-mono); font-size: .64rem; letter-spacing: .1em; text-transform: uppercase;
+      border: 1px solid var(--line); border-radius: 999px; padding: .25rem .6rem; color: var(--ink-2);
+    }
+
+    /* ---------- Toolkit ---------- */
+    .kits { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem 3rem; }
+    .kit h3 { font-family: var(--font-mono); font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-deep); margin-bottom: 1rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: .55rem; }
+    .chip {
+      font-family: var(--font-mono); font-size: .72rem; letter-spacing: .06em;
+      background: var(--panel); border: 1px solid var(--line); border-radius: 999px;
+      padding: .45rem .85rem; color: var(--ink);
+    }
+
+    /* ---------- Education ---------- */
+    .edu-rows { border-top: 1px solid var(--line); }
+    .edu-row { display: grid; grid-template-columns: 120px 1fr auto; gap: 1rem 2rem; align-items: baseline; padding-block: 1.3rem; border-bottom: 1px solid var(--line); }
+    .edu-row .year { font-family: var(--font-mono); font-size: .8rem; letter-spacing: .1em; color: var(--accent-deep); }
+    .edu-row .what { font-weight: 600; }
+    .edu-row .where { color: var(--ink-2); font-size: .95rem; }
+    .edu-row .meta { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .08em; color: var(--ink-2); white-space: nowrap; }
+
+    /* ---------- Contact ---------- */
+    .contact { background: var(--navy); color: #E9EEF6; border-radius: calc(var(--radius) + 8px); padding: clamp(2.6rem, 6vw, 4.2rem); position: relative; overflow: hidden; }
+    .contact::after {
+      content: ""; position: absolute; right: -70px; top: -70px; width: 260px; height: 260px;
+      background: var(--accent); opacity: .12; border-radius: 40px; transform: rotate(45deg); pointer-events: none;
+    }
+    .contact .mono { color: var(--accent); }
+    .contact h2 { font-family: var(--font-display); font-size: clamp(2.1rem, 5vw, 3.2rem); font-weight: 750; letter-spacing: -0.01em; margin: .7rem 0 1rem; color: #fff; }
+    .contact p { max-width: 34rem; color: #C6D2E4; }
+    .contact .cta-row { margin-top: 1.8rem; }
+    .contact .btn--solid { background: var(--accent); border-color: var(--accent); color: var(--navy); }
+    .contact .btn--solid:hover { background: #F5AC42; border-color: #F5AC42; }
+    .contact .btn--ghost { border-color: var(--line-navy); color: #E9EEF6; }
+    .contact .btn--ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .contact-mail { margin-top: 1.6rem; font-family: var(--font-mono); font-size: .8rem; letter-spacing: .06em; color: #9FB1CC; }
+    .contact-mail a { color: #E9EEF6; text-decoration-color: var(--accent); text-underline-offset: 4px; }
+
+    /* ---------- Footer ---------- */
+    .site-footer { padding: 2.2rem 0 2.8rem; }
+    .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .6rem 2rem; }
+
+    /* ============================================================
+       MOTION — one orchestrated hero moment + quiet reveals
+       ============================================================ */
+    @media (prefers-reduced-motion: no-preference) {
+      .js .rise { opacity: 0; transform: translateY(18px); animation: rise .7s cubic-bezier(.2,.7,.2,1) forwards; }
+      .js .rise-1 { animation-delay: .05s; }
+      .js .rise-2 { animation-delay: .15s; }
+      .js .rise-3 { animation-delay: .25s; }
+      .js .rise-4 { animation-delay: .35s; }
+      @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+
+      .js .bar { transform: scaleY(0); animation: grow .8s cubic-bezier(.2,.7,.2,1) forwards; }
+      .js .col:nth-child(1) .bar { animation-delay: .45s; }
+      .js .col:nth-child(2) .bar { animation-delay: .60s; }
+      .js .col:nth-child(3) .bar { animation-delay: .75s; }
+      .js .col:nth-child(4) .bar { animation-delay: .90s; }
+      .js .col:nth-child(5) .bar { animation-delay: 1.05s; }
+      @keyframes grow { to { transform: scaleY(1); } }
+
+      .js .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+      .js .reveal.visible { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .ticker-track { animation: none; }
+    }
+
+    /* ============================================================
+       RESPONSIVE
+       ============================================================ */
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; align-items: start; }
+      .section-head, .about-grid { grid-template-columns: 1fr; gap: .8rem; }
+      .kits { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 760px) {
+      .site-nav { display: none; }
+      .bars { height: 210px; }
+      .col-label { font-size: .56rem; }
+      .edu-row { grid-template-columns: 90px 1fr; }
+      .edu-row .meta { grid-column: 2; }
+    }
+    @media (max-width: 560px) {
+      .clock { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" id="top">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="Koustav Kundu — back to top">
+        <span class="brand-mark" aria-hidden="true"></span>
+        Koustav Kundu
+      </a>
+      <nav class="site-nav" aria-label="Sections">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#lab">Lab</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <span class="clock" id="clock" aria-hidden="true">MUMBAI · —:— IST</span>
+    </div>
+  </header>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="mono eyebrow rise rise-1">Product Manager · Business Loans Group · ICICI Bank</p>
+        <h1 class="rise rise-2">Lending products by day.<br /><span class="accent-line">A builder's lab by night.</span></h1>
+        <p class="lede rise rise-3">
+          I'm <strong>Koustav Kundu</strong> — I run business-loan renewals and digital lending
+          journeys at ICICI Bank, Mumbai. After hours, I automate whatever repeats twice:
+          with <strong>Python</strong>, a <strong>Raspberry Pi</strong>, and a healthy respect for markets.
+        </p>
+        <div class="cta-row rise rise-4">
+          <a class="btn btn--solid" href="mailto:koustavk1204@gmail.com">Email me</a>
+          <a class="btn btn--ghost" href="https://www.linkedin.com/in/koustav-kundu082228120/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+        <p class="mono hero-micro rise rise-4">Open to conversations on product, credit &amp; automation.</p>
+      </div>
+
+      <!-- Career waterfall: width = years in role, height = scope -->
+      <div class="chart rise rise-3" aria-label="Career waterfall chart">
+        <div class="chart-frame">
+          <div class="chart-title">
+            <span class="mono">Career · Waterfall view</span>
+            <span class="mono">2016 → today ▲</span>
+          </div>
+          <div class="bars">
+            <div class="col" style="flex-grow: 2.7" tabindex="0">
+              <span class="tip">Associate · Retail Banking &amp; Custody Ops</span>
+              <div class="bar" style="--h: 34%"></div>
+              <span class="col-label">'16–'19<br />TCS</span>
+            </div>
+            <div class="col" style="flex-grow: 3" tabindex="0">
+              <span class="tip">MBA (Finance) · Symbiosis, Pune</span>
+              <div class="bar bar--outline" style="--h: 52%"></div>
+              <span class="col-label">'19–'22<br />MBA</span>
+            </div>
+            <div class="col" style="flex-grow: 0.8" tabindex="0">
+              <span class="tip">Finance Intern · Financial Analyst</span>
+              <div class="bar" style="--h: 60%"></div>
+              <span class="col-label">'21<br />Tradeify</span>
+            </div>
+            <div class="col" style="flex-grow: 4.1" tabindex="0">
+              <span class="tip">Product Manager · Business Loans Group</span>
+              <div class="bar bar--accent" style="--h: 86%"></div>
+              <span class="col-label">'22–now<br />ICICI</span>
+            </div>
+            <div class="col" style="flex-grow: 1" tabindex="0">
+              <span class="tip">Open to what's next</span>
+              <div class="bar bar--next" style="--h: 100%"></div>
+              <span class="col-label">next<br />↗</span>
+            </div>
+          </div>
+          <p class="mono chart-caption">width = time · height = scope</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TICKER ================= -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span class="ticker-item">Business loans <span class="up">▲</span></span>
+      <span class="ticker-item">Product strategy <span class="up">▲</span></span>
+      <span class="ticker-item">Stakeholder mgmt <span class="up">▲</span></span>
+      <span class="ticker-item">Python <span class="up">▲</span></span>
+      <span class="ticker-item">Raspberry Pi <span class="up">▲</span></span>
+      <span class="ticker-item">UAT <span class="up">▲</span></span>
+      <span class="ticker-item">NSE / BSE <span class="up">▲</span></span>
+      <span class="ticker-item">Automation <span class="up">▲</span></span>
+      <span class="ticker-item">MIS &amp; dashboards <span class="up">▲</span></span>
+      <span class="ticker-item">Telegram bots <span class="up">▲</span></span>
+      <!-- duplicate for seamless loop -->
+      <span class="ticker-item">Business loans <span class="up">▲</span></span>
+      <span class="ticker-item">Product strategy <span class="up">▲</span></span>
+      <span class="ticker-item">Stakeholder mgmt <span class="up">▲</span></span>
+      <span class="ticker-item">Python <span class="up">▲</span></span>
+      <span class="ticker-item">Raspberry Pi <span class="up">▲</span></span>
+      <span class="ticker-item">UAT <span class="up">▲</span></span>
+      <span class="ticker-item">NSE / BSE <span class="up">▲</span></span>
+      <span class="ticker-item">Automation <span class="up">▲</span></span>
+      <span class="ticker-item">MIS &amp; dashboards <span class="up">▲</span></span>
+      <span class="ticker-item">Telegram bots <span class="up">▲</span></span>
+    </div>
+  </div>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="section" id="about">
+    <div class="wrap about-grid">
+      <p class="mono section-kicker reveal">About</p>
+      <div class="about-copy">
+        <p class="reveal">
+          I started on the operations floor — nearly three years at <strong>TCS</strong> running retail-banking
+          and custody processes, where I learned how banks actually move money: due diligence, maker–checker,
+          MIS, and the thousand small controls behind every transaction.
+        </p>
+        <p class="reveal">
+          An MBA in Finance later, I moved to the product side. At <strong>ICICI Bank's Business Loans Group</strong>
+          I own the renewals portfolio and the machinery around it — building the portfolio waterfall, then working
+          with DSAG and Policy to automate it end-to-end (yes, including UAT on the input files). I like the
+          unglamorous middle of product work: getting policy, tech and business to agree on the same file format.
+        </p>
+        <p class="reveal">
+          Off hours, my desk looks different — a Raspberry Pi home server, Python screeners for Indian equities,
+          and small pipelines that stitch LLM APIs into daily workflows. The rule of the lab is simple:
+          <strong>if a task repeats twice, it gets a script.</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= WORK ================= -->
+  <section class="section" id="work" style="padding-top: 0;">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="mono section-kicker reveal">Experience</p>
+        <h2 class="reveal">Ten years around lending, one loan at a time.</h2>
+      </div>
+
+      <div class="jobs">
+        <article class="job job--now reveal">
+          <div class="job-top">
+            <h3>Product Manager — Business Loans Group</h3>
+            <span class="period">Jun 2022 — Present</span>
+          </div>
+          <p class="org">ICICI Bank Ltd · Mumbai</p>
+          <ul>
+            <li>Own renewals for the Business Loans Group portfolio — granular follow-ups with business teams, training on transaction-based renewals, and first line for product escalations.</li>
+            <li>Built the BLG portfolio waterfall, then partnered with DSAG and the Policy team to automate its preparation and input files end-to-end, including UAT on sample files.</li>
+            <li>Drove <strong>Smart Top-Up</strong> — converting unsecured top-up loans into secured, enhanced top-ups.</li>
+            <li>Championed <strong>Saral-Vridhi</strong> across business, Unified Lending Platform (ULP) and Policy teams, bringing the pre-approved enhancement facility for secured customers onto the digital platform.</li>
+            <li>Coordinated project planning and execution across team members and team leads.</li>
+          </ul>
+        </article>
+
+        <article class="job reveal">
+          <div class="job-top">
+            <h3>Finance Intern — Financial Analyst</h3>
+            <span class="period">Apr 2021 — Jun 2021</span>
+          </div>
+          <p class="org">Tradeify India Pvt. Ltd · Pune</p>
+          <ul>
+            <li>Built financial models supporting the P&amp;L statement and balance sheet.</li>
+            <li>Managed accounts-receivable invoicing for retailer debit and credit transactions.</li>
+          </ul>
+        </article>
+
+        <article class="job reveal">
+          <div class="job-top">
+            <h3>Associate — Retail Banking &amp; Custody Operations</h3>
+            <span class="period">Jun 2016 — Feb 2019</span>
+          </div>
+          <p class="org">Tata Consultancy Services · Gurugram</p>
+          <ul>
+            <li>Performed customer due diligence on payments, fund transfers and account servicing requests.</li>
+            <li>Ran account-lifecycle operations — card blocking, statements, phone-banking changes, and account closures with balance transfer.</li>
+            <li>Trained new colleagues on the Engage One application; prepared daily, weekly and monthly MIS and dashboards.</li>
+            <li>Performed maker–checker calibration and reporting.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LAB ================= -->
+  <section class="section" id="lab" style="padding-top: 0;">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="mono section-kicker reveal">The lab</p>
+        <h2 class="reveal">Things I build after the market closes.</h2>
+      </div>
+      <p class="lab-note reveal">Personal projects — built for fun, kept because they turned out useful.</p>
+
+      <div class="cards">
+        <article class="card reveal">
+          <h3>Raspberry Pi home server</h3>
+          <p>A Pi 5 that never sleeps — runs a self-hosted automation hub with a Telegram bot gateway handling daily tasks, alerts and small agents.</p>
+          <div class="tags"><span class="tag">Raspberry Pi</span><span class="tag">Linux</span><span class="tag">Telegram API</span></div>
+        </article>
+
+        <article class="card reveal">
+          <h3>Swing-trade screener</h3>
+          <p>Python screener for NSE stocks that blends technical and fundamental filters, plus a position sizer built on fixed-fractional risk and a 2:1 reward-to-risk floor.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NSE</span></div>
+        </article>
+
+        <article class="card reveal">
+          <h3>LinkedIn content pipeline</h3>
+          <p>Scripts that draft finance and markets posts with LLM APIs — every draft passes through a human approval step before anything ships.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">LLM APIs</span><span class="tag">Automation</span></div>
+        </article>
+
+        <article class="card reveal">
+          <h3>3D floor-plan viewer</h3>
+          <p>An interactive Three.js "dollhouse" of a home under construction — used to test interior layouts and walk through rooms before they exist.</p>
+          <div class="tags"><span class="tag">Three.js</span><span class="tag">JavaScript</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TOOLKIT ================= -->
+  <section class="section" id="toolkit" style="padding-top: 0;">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="mono section-kicker reveal">Toolkit</p>
+        <h2 class="reveal">Two desks, one operator.</h2>
+      </div>
+      <div class="kits">
+        <div class="kit reveal">
+          <h3>Product &amp; banking</h3>
+          <div class="chips">
+            <span class="chip">Product lifecycle</span>
+            <span class="chip">Stakeholder management</span>
+            <span class="chip">Requirements &amp; UAT</span>
+            <span class="chip">Project planning</span>
+            <span class="chip">Credit &amp; lending ops</span>
+            <span class="chip">Process automation</span>
+            <span class="chip">MIS &amp; reporting</span>
+            <span class="chip">Product strategy</span>
+          </div>
+        </div>
+        <div class="kit reveal">
+          <h3>Tech &amp; tinkering</h3>
+          <div class="chips">
+            <span class="chip">Python</span>
+            <span class="chip">Pandas / NumPy</span>
+            <span class="chip">SQL</span>
+            <span class="chip">Excel</span>
+            <span class="chip">REST APIs</span>
+            <span class="chip">Linux / Raspberry Pi</span>
+            <span class="chip">Git</span>
+            <span class="chip">Three.js (basics)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= EDUCATION ================= -->
+  <section class="section" id="education" style="padding-top: 0;">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="mono section-kicker reveal">Education</p>
+        <h2 class="reveal">Credentials on file.</h2>
+      </div>
+      <div class="edu-rows reveal">
+        <div class="edu-row">
+          <span class="year">2022</span>
+          <span><span class="what">MBA, Finance</span><br /><span class="where">Symbiosis Institute of Management Studies, Pune</span></span>
+          <span class="meta">CGPA 7.37</span>
+        </div>
+        <div class="edu-row">
+          <span class="year">2021</span>
+          <span><span class="what">Bloomberg Market Concepts</span><br /><span class="where">Certification</span></span>
+          <span class="meta">BMC</span>
+        </div>
+        <div class="edu-row">
+          <span class="year">2016</span>
+          <span><span class="what">BBA, Finance</span><br /><span class="where">Prestige Institute of Management, Gwalior</span></span>
+          <span class="meta">60.5%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section class="section" id="contact" style="padding-top: 0;">
+    <div class="wrap">
+      <div class="contact reveal">
+        <p class="mono">Contact</p>
+        <h2>Say hello.</h2>
+        <p>For roles, product problems, market talk, or a good automation idea — my inbox is open. Usually reply within a day.</p>
+        <div class="cta-row">
+          <a class="btn btn--solid" href="mailto:koustavk1204@gmail.com">Email me</a>
+          <a class="btn btn--ghost" href="https://www.linkedin.com/in/koustav-kundu082228120/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+        <p class="contact-mail">→ <a href="mailto:koustavk1204@gmail.com">koustavk1204@gmail.com</a> · Mumbai, India</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span class="mono">© 2026 Koustav Kundu</span>
+      <span class="mono">Built by hand — HTML, CSS &amp; a little JS. No trackers.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Progressive enhancement flag (animations only run when JS is on)
+    document.documentElement.classList.add("js");
+
+    // Header shadow after scroll
+    const header = document.querySelector(".site-header");
+    const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 8);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    // Scroll reveals
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+    );
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+    // Live IST clock in the header
+    const clock = document.getElementById("clock");
+    function tick() {
+      const now = new Date().toLocaleTimeString("en-IN", {
+        timeZone: "Asia/Kolkata",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      });
+      clock.textContent = "MUMBAI · " + now + " IST";
+    }
+    tick();
+    setInterval(tick, 30000);
+  </script>
+</body>
+</html>
