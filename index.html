@@ -349,9 +349,10 @@
     .slot.selected { background: var(--accent); border-color: var(--accent); color: var(--ink); font-weight: 600; }
     .book-confirm-row { margin-top: 18px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
     .book-status { font-size: 13px; opacity: .9; min-height: 1em; }
-    /* ---------- Cal.com booking embed (single, compact) ---------- */
-    .book-wrap { max-width: 640px; margin: 1.6rem auto 0; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.1rem; box-shadow: var(--shadow); }
-    .book-label { margin-bottom: .8rem; color: var(--accent-deep); }
+    /* ---------- Cal.com booking pop-up button ---------- */
+    .book-cta { margin-top: 1.8rem; }
+    .book-cta .btn { cursor: pointer; border: none; font: inherit; }
+    .book-note { margin-top: .7rem; color: var(--ink-2); }
     </style>
 </head>
 <body>
@@ -650,20 +651,21 @@
           <a class="btn btn--solid" href="mailto:contact@koustavkundu.com">Email me</a>
           <a class="btn btn--ghost" href="https://www.linkedin.com/in/koustav-kundu-082228120/" target="_blank" rel="noopener">LinkedIn ↗</a>
         </div>
-      <!-- Cal.com inline booking embed (single, compact column view; visitor picks consultation type) -->
-      <div class="book-wrap">
-        <p class="mono book-label">Book a call · pick a consultation type</p>
-        <div style="width:100%;min-height:520px;overflow:auto" id="my-cal-inline"></div>
+      <!-- Cal.com pop-up booking button (opens overlay; visitor picks consultation type) -->
+      <div class="book-cta">
+        <button
+          class="btn btn--solid"
+          data-cal-namespace="booking"
+          data-cal-link="koustav-kundu-qmio3w"
+          data-cal-config='{"layout":"month_view"}'>
+          Book a call ↗
+        </button>
+        <p class="book-note mono">Pick a Weekday or Weekend slot · opens in a pop-up</p>
       </div>
       <script type="text/javascript">
   (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
         Cal("init", "booking", {origin:"https://app.cal.com"});
-        Cal.ns["booking"]("inline", {
-          elementOrSelector:"#my-cal-inline",
-          config: {"layout":"column_view"},
-          calLink: "koustav-kundu-qmio3w",
-        });
-        Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"column_view"});
+        Cal.ns["booking"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
       </script>
         <p class="contact-mail">→ <a href="mailto:contact@koustavkundu.com">contact@koustavkundu.com</a> · Mumbai, India</p>
       </div>
