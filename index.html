@@ -647,37 +647,19 @@
           <a class="btn btn--solid" href="mailto:contact@koustavkundu.com">Email me</a>
           <a class="btn btn--ghost" href="https://www.linkedin.com/in/koustav-kundu-082228120/" target="_blank" rel="noopener">LinkedIn ↗</a>
         </div>
+        <!-- Cal.com inline booking embed (15-minute Consultation) -->
         <div class="book-wrap">
-          <button type="button" class="btn btn--solid" id="bookToggle" aria-expanded="false">Book a Consultation</button>
-          <div class="book-panel" id="bookPanel">
-            <h3>Book a 15-minute consultation</h3>
-            <p class="book-help">Pick a date and an evening slot (all times IST). Confirming opens a pre-filled email to request your slot.</p>
-            <div class="book-field">
-              <label for="bookDate">Preferred date</label>
-              <input type="date" id="bookDate" />
-            </div>
-            <div class="book-field">
-              <label>Available slots · 6:00–9:00 PM IST</label>
-              <div class="slot-grid" id="slotGrid">
-                <button type="button" class="slot" data-time="6:00 PM">6:00 PM</button>
-                <button type="button" class="slot" data-time="6:15 PM">6:15 PM</button>
-                <button type="button" class="slot" data-time="6:30 PM">6:30 PM</button>
-                <button type="button" class="slot" data-time="6:45 PM">6:45 PM</button>
-                <button type="button" class="slot" data-time="7:00 PM">7:00 PM</button>
-                <button type="button" class="slot" data-time="7:15 PM">7:15 PM</button>
-                <button type="button" class="slot" data-time="7:30 PM">7:30 PM</button>
-                <button type="button" class="slot" data-time="7:45 PM">7:45 PM</button>
-                <button type="button" class="slot" data-time="8:00 PM">8:00 PM</button>
-                <button type="button" class="slot" data-time="8:15 PM">8:15 PM</button>
-                <button type="button" class="slot" data-time="8:30 PM">8:30 PM</button>
-                <button type="button" class="slot" data-time="8:45 PM">8:45 PM</button>
-              </div>
-            </div>
-            <div class="book-confirm-row">
-              <button type="button" class="btn btn--solid" id="bookConfirm">Confirm booking</button>
-              <span class="book-status" id="bookStatus" role="status"></span>
-            </div>
-          </div>
+          <div style="width:100%;min-height:640px;overflow:auto" id="my-cal-inline-15min"></div>
+          <script type="text/javascript">
+            (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+            Cal("init", "15min", {origin:"https://cal.com"});
+            Cal.ns["15min"]("inline", {
+              elementOrSelector:"#my-cal-inline-15min",
+              config: {"layout":"month_view"},
+              calLink: "koustav-kundu-qmio3w/15min",
+            });
+            Cal.ns["15min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+          </script>
         </div>
         <p class="contact-mail">→ <a href="mailto:contact@koustavkundu.com">contact@koustavkundu.com</a> · Mumbai, India</p>
       </div>
@@ -729,45 +711,6 @@
     }
     tick();
     setInterval(tick, 30000);
-  </script>
-  <script>
-    // Consultation booking widget
-    (function () {
-      var toggle = document.getElementById('bookToggle');
-      var panel = document.getElementById('bookPanel');
-      var grid = document.getElementById('slotGrid');
-      var confirmBtn = document.getElementById('bookConfirm');
-      var status = document.getElementById('bookStatus');
-      var dateInput = document.getElementById('bookDate');
-      var selected = null;
-      if (!toggle || !panel) return;
-      var today = new Date();
-      var iso = today.toISOString().slice(0, 10);
-      if (dateInput) dateInput.min = iso;
-      toggle.addEventListener('click', function () {
-        var open = panel.classList.toggle('open');
-        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
-      grid.addEventListener('click', function (e) {
-        var btn = e.target.closest('.slot');
-        if (!btn) return;
-        var prev = grid.querySelector('.slot.selected');
-        if (prev) prev.classList.remove('selected');
-        btn.classList.add('selected');
-        selected = btn.getAttribute('data-time');
-        if (status) status.textContent = '';
-      });
-      confirmBtn.addEventListener('click', function () {
-        if (!selected) { status.textContent = 'Please pick a time slot first.'; return; }
-        var d = dateInput && dateInput.value ? dateInput.value : '';
-        var when = d ? (d + ' at ' + selected + ' IST') : (selected + ' IST');
-        var subject = 'Consultation request: ' + when;
-        var body = 'Hi Koustav,\n\nI would like to book a 15-minute consultation.\n\nDate: ' + (d || '(please confirm)') + '\nTime: ' + selected + ' IST\n\nThanks!';
-        var href = 'mailto:contact@koustavkundu.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-        window.location.href = href;
-        status.textContent = 'Opening your email to request ' + when + '\u2026';
-      });
-    })();
   </script>
 </body>
 </html>
