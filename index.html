@@ -349,6 +349,11 @@
     .slot.selected { background: var(--accent); border-color: var(--accent); color: var(--ink); font-weight: 600; }
     .book-confirm-row { margin-top: 18px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
     .book-status { font-size: 13px; opacity: .9; min-height: 1em; }
+    /* ---------- Cal.com booking embeds (two-column) ---------- */
+    .book-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1rem, 3vw, 2rem); margin-top: 1.6rem; }
+    .book-col { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem; box-shadow: var(--shadow); }
+    .book-label { margin-bottom: .7rem; color: var(--accent-deep); }
+    @media (max-width: 820px) { .book-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -647,20 +652,38 @@
           <a class="btn btn--solid" href="mailto:contact@koustavkundu.com">Email me</a>
           <a class="btn btn--ghost" href="https://www.linkedin.com/in/koustav-kundu-082228120/" target="_blank" rel="noopener">LinkedIn ↗</a>
         </div>
-        <!-- Cal.com inline booking embed (15-minute Consultation) -->
-        <div class="book-wrap">
-          <div style="width:100%;min-height:640px;overflow:auto" id="my-cal-inline-15min"></div>
-          <script type="text/javascript">
-            (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-            Cal("init", "15min", {origin:"https://cal.com"});
-            Cal.ns["15min"]("inline", {
-              elementOrSelector:"#my-cal-inline-15min",
-              config: {"layout":"month_view"},
-              calLink: "koustav-kundu-qmio3w/15min",
-            });
-            Cal.ns["15min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
-          </script>
+      <!-- Cal.com inline booking embeds (Weekday + Weekend consultations) -->
+      <div class="book-wrap book-grid">
+
+        <div class="book-col">
+          <p class="mono book-label">Weekday · Mon–Fri · 6–9 PM IST</p>
+          <div style="width:100%;min-height:640px;overflow:scroll" id="my-cal-inline-15min"></div>
         </div>
+
+        <div class="book-col">
+          <p class="mono book-label">Weekend · Sat–Sun · 11 AM–9 PM IST (lunch 12–2)</p>
+          <div style="width:100%;min-height:640px;overflow:scroll" id="my-cal-inline-weekend"></div>
+        </div>
+
+      </div>
+      <script type="text/javascript">
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+        Cal("init", "15min", {origin:"https://app.cal.com"});
+        Cal.ns["15min"]("inline", {
+          elementOrSelector:"#my-cal-inline-15min",
+          config: {"layout":"month_view"},
+          calLink: "koustav-kundu-qmio3w/15min",
+        });
+        Cal.ns["15min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+
+        Cal("init", "weekend", {origin:"https://app.cal.com"});
+        Cal.ns["weekend"]("inline", {
+          elementOrSelector:"#my-cal-inline-weekend",
+          config: {"layout":"month_view"},
+          calLink: "koustav-kundu-qmio3w/weekend",
+        });
+        Cal.ns["weekend"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
+      </script>
         <p class="contact-mail">→ <a href="mailto:contact@koustavkundu.com">contact@koustavkundu.com</a> · Mumbai, India</p>
       </div>
     </div>
