@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Koustav Kundu — Product Manager & Builder</title>
-  <meta name="description" content="Koustav Kundu — Product Manager, Business Loans Group at ICICI Bank, Mumbai. Lending products, portfolio automation, and after-hours builds with Python and a Raspberry Pi." />
-  <meta property="og:title" content="Koustav Kundu — Product Manager & Builder" />
+  <title>Koustav Kundu â Product Manager & Builder</title>
+  <meta name="description" content="Koustav Kundu â Product Manager, Business Loans Group at ICICI Bank, Mumbai. Lending products, portfolio automation, and after-hours builds with Python and a Raspberry Pi." />
+  <meta property="og:title" content="Koustav Kundu â Product Manager & Builder" />
   <meta property="og:description" content="Lending products by day. A builder's lab by night." />
   <meta property="og:type" content="website" />
 
   <!-- Favicon: navy tile, marigold K -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B1F3A'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-weight='700' font-size='36' fill='%23EC9B29' text-anchor='middle'%3EK%3C/text%3E%3C/svg%3E" />
 
-  <!-- Fonts: Bricolage Grotesque (display) · Public Sans (body) · Spline Sans Mono (data/labels) -->
+  <!-- Fonts: Bricolage Grotesque (display) Â· Public Sans (body) Â· Spline Sans Mono (data/labels) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Public+Sans:wght@400;500;600&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -22,7 +22,7 @@
        DESIGN TOKENS
        Annual-report palette: deep navy ink + marigold accent
        on cool paper. Widths & heights in the hero chart encode
-       real career data (duration → width, scope → height).
+       real career data (duration â width, scope â height).
        ============================================================ */
     :root {
       --paper:   #F4F6F8;
@@ -98,7 +98,7 @@
     .clock { font-family: var(--font-mono); font-size: .74rem; letter-spacing: .1em; color: var(--ink-2); white-space: nowrap; }
 
     /* ============================================================
-       HERO — thesis + the career waterfall
+       HERO â thesis + the career waterfall
        ============================================================ */
     .hero { padding-block: clamp(3.2rem, 8vw, 5.5rem) clamp(2.6rem, 6vw, 4rem); }
     .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(2rem, 5vw, 4rem); align-items: end; }
@@ -132,7 +132,7 @@
     .hero-micro { margin-top: 1.3rem; }
 
     /* ----- Career waterfall chart (pure CSS) -----
-       Column WIDTH  = time spent (flex-grow ≈ years)
+       Column WIDTH  = time spent (flex-grow â years)
        Column HEIGHT = scope of the role                    */
     .chart { position: relative; }
     .chart-frame {
@@ -191,7 +191,7 @@
     @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
     /* ============================================================
-       SECTIONS — shared scaffolding
+       SECTIONS â shared scaffolding
        ============================================================ */
     .section { padding-block: clamp(3.2rem, 8vw, 5.5rem); }
     .section-head { display: grid; grid-template-columns: 220px 1fr; gap: 1rem 3rem; margin-bottom: 2.4rem; align-items: start; }
@@ -222,7 +222,7 @@
     .job .org { font-family: var(--font-mono); font-size: .76rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 1.1rem; }
     .job ul { list-style: none; display: grid; gap: .65rem; color: var(--ink-2); }
     .job li { padding-left: 1.4rem; position: relative; }
-    .job li::before { content: "—"; position: absolute; left: 0; color: var(--accent-deep); }
+    .job li::before { content: "â"; position: absolute; left: 0; color: var(--accent-deep); }
 
     /* Current role: inverted card */
     .job--now { background: var(--navy); border-color: var(--line-navy); color: #E9EEF6; }
@@ -289,7 +289,7 @@
     .footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .6rem 2rem; }
 
     /* ============================================================
-       MOTION — one orchestrated hero moment + quiet reveals
+       MOTION â one orchestrated hero moment + quiet reveals
        ============================================================ */
     @media (prefers-reduced-motion: no-preference) {
       .js .rise { opacity: 0; transform: translateY(18px); animation: rise .7s cubic-bezier(.2,.7,.2,1) forwards; }
@@ -333,14 +333,30 @@
     @media (max-width: 560px) {
       .clock { display: none; }
     }
-  </style>
+
+    /* ===== Consultation booking ===== */
+    .book-wrap { margin-top: 22px; }
+    .book-panel { display: none; margin-top: 20px; padding: 22px; border: 1px solid rgba(244,246,248,.18); border-radius: 16px; background: rgba(244,246,248,.04); max-width: 560px; }
+    .book-panel.open { display: block; }
+    .book-panel h3 { margin: 0 0 4px; font-size: 18px; color: var(--paper); }
+    .book-panel .book-help { margin: 0 0 16px; font-size: 13px; opacity: .8; }
+    .book-field { margin-bottom: 16px; }
+    .book-field label { display: block; font-family: "Spline Sans Mono", monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; opacity: .75; margin-bottom: 8px; }
+    .book-field input[type=date] { width: 100%; max-width: 240px; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(244,246,248,.25); background: rgba(244,246,248,.06); color: var(--paper); font-family: inherit; font-size: 14px; }
+    .slot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 8px; }
+    .slot { cursor: pointer; text-align: center; padding: 10px 6px; border-radius: 999px; border: 1px solid rgba(244,246,248,.25); background: transparent; color: var(--paper); font-family: "Spline Sans Mono", monospace; font-size: 12px; letter-spacing: .5px; transition: border-color .15s ease, background .15s ease, color .15s ease; }
+    .slot:hover { border-color: var(--accent); }
+    .slot.selected { background: var(--accent); border-color: var(--accent); color: var(--ink); font-weight: 600; }
+    .book-confirm-row { margin-top: 18px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .book-status { font-size: 13px; opacity: .9; min-height: 1em; }
+    </style>
 </head>
 <body>
 
   <!-- ================= HEADER ================= -->
   <header class="site-header" id="top">
     <div class="wrap header-inner">
-      <a class="brand" href="#top" onclick="event.preventDefault();window.scrollTo(0,0);history.replaceState(null,'',location.pathname+location.search);" aria-label="Koustav Kundu — back to top">
+      <a class="brand" href="#top" onclick="event.preventDefault();window.scrollTo(0,0);history.replaceState(null,'',location.pathname+location.search);" aria-label="Koustav Kundu â back to top">
         <span class="brand-mark" aria-hidden="true"></span>
         Koustav Kundu
       </a>
@@ -351,7 +367,7 @@
         <a href="#education">Education</a>
         <a href="#contact">Contact</a>
       </nav>
-      <span class="clock" id="clock" aria-hidden="true">MUMBAI · —:— IST</span>
+      <span class="clock" id="clock" aria-hidden="true">MUMBAI Â· â:â IST</span>
     </div>
   </header>
 
@@ -359,16 +375,16 @@
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
-        <p class="mono eyebrow rise rise-1">Product Manager · Business Loans Group · ICICI Bank</p>
+        <p class="mono eyebrow rise rise-1">Product Manager Â· Business Loans Group Â· ICICI Bank</p>
         <h1 class="rise rise-2">Lending products by day.<br /><span class="accent-line">A builder's lab by night.</span></h1>
         <p class="lede rise rise-3">
-          I'm <strong>Koustav Kundu</strong> — I run business-loan renewals and digital lending
+          I'm <strong>Koustav Kundu</strong> â I run business-loan renewals and digital lending
           journeys at ICICI Bank, Mumbai. After hours, I automate whatever repeats twice:
           with <strong>Python</strong>, a <strong>Raspberry Pi</strong>, and a healthy respect for markets.
         </p>
         <div class="cta-row rise rise-4">
           <a class="btn btn--solid" href="mailto:contact@koustavkundu.com">Email me</a>
-          <a class="btn btn--ghost" href="https://www.linkedin.com/in/koustav-kundu-082228120/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="btn btn--ghost" href="https://www.linkedin.com/in/koustav-kundu-082228120/" target="_blank" rel="noopener">LinkedIn â</a>
         </div>
         <p class="mono hero-micro rise rise-4">Open to conversations on product, credit &amp; automation.</p>
       </div>
@@ -377,37 +393,37 @@
       <div class="chart rise rise-3" aria-label="Career waterfall chart">
         <div class="chart-frame">
           <div class="chart-title">
-            <span class="mono">Career · Waterfall view</span>
-            <span class="mono">2016 → today ▲</span>
+            <span class="mono">Career Â· Waterfall view</span>
+            <span class="mono">2016 â today â²</span>
           </div>
           <div class="bars">
             <div class="col" style="flex-grow: 2.7" tabindex="0">
-              <span class="tip">Associate · Retail Banking &amp; Custody Ops</span>
+              <span class="tip">Associate Â· Retail Banking &amp; Custody Ops</span>
               <div class="bar" style="--h: 34%"></div>
-              <span class="col-label">'16–'19<br />TCS</span>
+              <span class="col-label">'16â'19<br />TCS</span>
             </div>
             <div class="col" style="flex-grow: 3" tabindex="0">
-              <span class="tip">MBA (Finance) · Symbiosis, Pune</span>
+              <span class="tip">MBA (Finance) Â· Symbiosis, Pune</span>
               <div class="bar bar--outline" style="--h: 52%"></div>
-              <span class="col-label">'19–'22<br />MBA</span>
+              <span class="col-label">'19â'22<br />MBA</span>
             </div>
             <div class="col" style="flex-grow: 0.8" tabindex="0">
-              <span class="tip">Finance Intern · Financial Analyst</span>
+              <span class="tip">Finance Intern Â· Financial Analyst</span>
               <div class="bar" style="--h: 60%"></div>
               <span class="col-label">'21<br />Tradeify</span>
             </div>
             <div class="col" style="flex-grow: 4.1" tabindex="0">
-              <span class="tip">Product Manager · Business Loans Group</span>
+              <span class="tip">Product Manager Â· Business Loans Group</span>
               <div class="bar bar--accent" style="--h: 86%"></div>
-              <span class="col-label">'22–now<br />ICICI</span>
+              <span class="col-label">'22ânow<br />ICICI</span>
             </div>
             <div class="col" style="flex-grow: 1" tabindex="0">
               <span class="tip">Open to what's next</span>
               <div class="bar bar--next" style="--h: 100%"></div>
-              <span class="col-label">next<br />↗</span>
+              <span class="col-label">next<br />â</span>
             </div>
           </div>
-          <p class="mono chart-caption">width = time · height = scope</p>
+          <p class="mono chart-caption">width = time Â· height = scope</p>
         </div>
       </div>
     </div>
@@ -416,27 +432,27 @@
   <!-- ================= TICKER ================= -->
   <div class="ticker" aria-hidden="true">
     <div class="ticker-track">
-      <span class="ticker-item">Business loans <span class="up">▲</span></span>
-      <span class="ticker-item">Product strategy <span class="up">▲</span></span>
-      <span class="ticker-item">Stakeholder mgmt <span class="up">▲</span></span>
-      <span class="ticker-item">Python <span class="up">▲</span></span>
-      <span class="ticker-item">Raspberry Pi <span class="up">▲</span></span>
-      <span class="ticker-item">UAT <span class="up">▲</span></span>
-      <span class="ticker-item">NSE / BSE <span class="up">▲</span></span>
-      <span class="ticker-item">Automation <span class="up">▲</span></span>
-      <span class="ticker-item">MIS &amp; dashboards <span class="up">▲</span></span>
-      <span class="ticker-item">Telegram bots <span class="up">▲</span></span>
+      <span class="ticker-item">Business loans <span class="up">â²</span></span>
+      <span class="ticker-item">Product strategy <span class="up">â²</span></span>
+      <span class="ticker-item">Stakeholder mgmt <span class="up">â²</span></span>
+      <span class="ticker-item">Python <span class="up">â²</span></span>
+      <span class="ticker-item">Raspberry Pi <span class="up">â²</span></span>
+      <span class="ticker-item">UAT <span class="up">â²</span></span>
+      <span class="ticker-item">NSE / BSE <span class="up">â²</span></span>
+      <span class="ticker-item">Automation <span class="up">â²</span></span>
+      <span class="ticker-item">MIS &amp; dashboards <span class="up">â²</span></span>
+      <span class="ticker-item">Telegram bots <span class="up">â²</span></span>
       <!-- duplicate for seamless loop -->
-      <span class="ticker-item">Business loans <span class="up">▲</span></span>
-      <span class="ticker-item">Product strategy <span class="up">▲</span></span>
-      <span class="ticker-item">Stakeholder mgmt <span class="up">▲</span></span>
-      <span class="ticker-item">Python <span class="up">▲</span></span>
-      <span class="ticker-item">Raspberry Pi <span class="up">▲</span></span>
-      <span class="ticker-item">UAT <span class="up">▲</span></span>
-      <span class="ticker-item">NSE / BSE <span class="up">▲</span></span>
-      <span class="ticker-item">Automation <span class="up">▲</span></span>
-      <span class="ticker-item">MIS &amp; dashboards <span class="up">▲</span></span>
-      <span class="ticker-item">Telegram bots <span class="up">▲</span></span>
+      <span class="ticker-item">Business loans <span class="up">â²</span></span>
+      <span class="ticker-item">Product strategy <span class="up">â²</span></span>
+      <span class="ticker-item">Stakeholder mgmt <span class="up">â²</span></span>
+      <span class="ticker-item">Python <span class="up">â²</span></span>
+      <span class="ticker-item">Raspberry Pi <span class="up">â²</span></span>
+      <span class="ticker-item">UAT <span class="up">â²</span></span>
+      <span class="ticker-item">NSE / BSE <span class="up">â²</span></span>
+      <span class="ticker-item">Automation <span class="up">â²</span></span>
+      <span class="ticker-item">MIS &amp; dashboards <span class="up">â²</span></span>
+      <span class="ticker-item">Telegram bots <span class="up">â²</span></span>
     </div>
   </div>
 
@@ -446,18 +462,18 @@
       <p class="mono section-kicker reveal">About</p>
       <div class="about-copy">
         <p class="reveal">
-          I started on the operations floor — nearly three years at <strong>TCS</strong> running retail-banking
-          and custody processes, where I learned how banks actually move money: due diligence, maker–checker,
+          I started on the operations floor â nearly three years at <strong>TCS</strong> running retail-banking
+          and custody processes, where I learned how banks actually move money: due diligence, makerâchecker,
           MIS, and the thousand small controls behind every transaction.
         </p>
         <p class="reveal">
           An MBA in Finance later, I moved to the product side. At <strong>ICICI Bank's Business Loans Group</strong>
-          I own the renewals portfolio and the machinery around it — building the portfolio waterfall, then working
+          I own the renewals portfolio and the machinery around it â building the portfolio waterfall, then working
           with DSAG and Policy to automate it end-to-end (yes, including UAT on the input files). I like the
           unglamorous middle of product work: getting policy, tech and business to agree on the same file format.
         </p>
         <p class="reveal">
-          Off hours, my desk looks different — a Raspberry Pi home server, Python screeners for Indian equities,
+          Off hours, my desk looks different â a Raspberry Pi home server, Python screeners for Indian equities,
           and small pipelines that stitch LLM APIs into daily workflows. The rule of the lab is simple:
           <strong>if a task repeats twice, it gets a script.</strong>
         </p>
@@ -476,14 +492,14 @@
       <div class="jobs">
         <article class="job job--now reveal">
           <div class="job-top">
-            <h3>Product Manager — Business Loans Group</h3>
-            <span class="period">Jun 2022 — Present</span>
+            <h3>Product Manager â Business Loans Group</h3>
+            <span class="period">Jun 2022 â Present</span>
           </div>
-          <p class="org">ICICI Bank Ltd · Mumbai</p>
+          <p class="org">ICICI Bank Ltd Â· Mumbai</p>
           <ul>
-            <li>Own renewals for the Business Loans Group portfolio — granular follow-ups with business teams, training on transaction-based renewals, and first line for product escalations.</li>
+            <li>Own renewals for the Business Loans Group portfolio â granular follow-ups with business teams, training on transaction-based renewals, and first line for product escalations.</li>
             <li>Built the BLG portfolio waterfall, then partnered with DSAG and the Policy team to automate its preparation and input files end-to-end, including UAT on sample files.</li>
-            <li>Drove <strong>Smart Top-Up</strong> — converting unsecured top-up loans into secured, enhanced top-ups.</li>
+            <li>Drove <strong>Smart Top-Up</strong> â converting unsecured top-up loans into secured, enhanced top-ups.</li>
             <li>Championed <strong>Saral-Vridhi</strong> across business, Unified Lending Platform (ULP) and Policy teams, bringing the pre-approved enhancement facility for secured customers onto the digital platform.</li>
             <li>Coordinated project planning and execution across team members and team leads.</li>
           </ul>
@@ -491,10 +507,10 @@
 
         <article class="job reveal">
           <div class="job-top">
-            <h3>Finance Intern — Financial Analyst</h3>
-            <span class="period">Apr 2021 — Jun 2021</span>
+            <h3>Finance Intern â Financial Analyst</h3>
+            <span class="period">Apr 2021 â Jun 2021</span>
           </div>
-          <p class="org">Tradeify India Pvt. Ltd · Pune</p>
+          <p class="org">Tradeify India Pvt. Ltd Â· Pune</p>
           <ul>
             <li>Built financial models supporting the P&amp;L statement and balance sheet.</li>
             <li>Managed accounts-receivable invoicing for retailer debit and credit transactions.</li>
@@ -503,15 +519,15 @@
 
         <article class="job reveal">
           <div class="job-top">
-            <h3>Associate — Retail Banking &amp; Custody Operations</h3>
-            <span class="period">Jun 2016 — Feb 2019</span>
+            <h3>Associate â Retail Banking &amp; Custody Operations</h3>
+            <span class="period">Jun 2016 â Feb 2019</span>
           </div>
-          <p class="org">Tata Consultancy Services · Gurugram</p>
+          <p class="org">Tata Consultancy Services Â· Gurugram</p>
           <ul>
             <li>Performed customer due diligence on payments, fund transfers and account servicing requests.</li>
-            <li>Ran account-lifecycle operations — card blocking, statements, phone-banking changes, and account closures with balance transfer.</li>
+            <li>Ran account-lifecycle operations â card blocking, statements, phone-banking changes, and account closures with balance transfer.</li>
             <li>Trained new colleagues on the Engage One application; prepared daily, weekly and monthly MIS and dashboards.</li>
-            <li>Performed maker–checker calibration and reporting.</li>
+            <li>Performed makerâchecker calibration and reporting.</li>
           </ul>
         </article>
       </div>
@@ -525,12 +541,12 @@
         <p class="mono section-kicker reveal">The lab</p>
         <h2 class="reveal">Things I build after the market closes.</h2>
       </div>
-      <p class="lab-note reveal">Personal projects — built for fun, kept because they turned out useful.</p>
+      <p class="lab-note reveal">Personal projects â built for fun, kept because they turned out useful.</p>
 
       <div class="cards">
         <article class="card reveal">
           <h3>Raspberry Pi home server</h3>
-          <p>A Pi 5 that never sleeps — runs a self-hosted automation hub with a Telegram bot gateway handling daily tasks, alerts and small agents.</p>
+          <p>A Pi 5 that never sleeps â runs a self-hosted automation hub with a Telegram bot gateway handling daily tasks, alerts and small agents.</p>
           <div class="tags"><span class="tag">Raspberry Pi</span><span class="tag">Linux</span><span class="tag">Telegram API</span></div>
         </article>
 
@@ -542,13 +558,13 @@
 
         <article class="card reveal">
           <h3>LinkedIn content pipeline</h3>
-          <p>Scripts that draft finance and markets posts with LLM APIs — every draft passes through a human approval step before anything ships.</p>
+          <p>Scripts that draft finance and markets posts with LLM APIs â every draft passes through a human approval step before anything ships.</p>
           <div class="tags"><span class="tag">Python</span><span class="tag">LLM APIs</span><span class="tag">Automation</span></div>
         </article>
 
         <article class="card reveal">
           <h3>3D floor-plan viewer</h3>
-          <p>An interactive Three.js "dollhouse" of a home under construction — used to test interior layouts and walk through rooms before they exist.</p>
+          <p>An interactive Three.js "dollhouse" of a home under construction â used to test interior layouts and walk through rooms before they exist.</p>
           <div class="tags"><span class="tag">Three.js</span><span class="tag">JavaScript</span></div>
         </article>
       </div>
@@ -626,12 +642,44 @@
       <div class="contact reveal">
         <p class="mono">Contact</p>
         <h2>Say hello.</h2>
-        <p>For roles, product problems, market talk, or a good automation idea — my inbox is open. Usually reply within a day.</p>
+        <p>For roles, product problems, market talk, or a good automation idea â my inbox is open. Usually reply within a day.</p>
         <div class="cta-row">
           <a class="btn btn--solid" href="mailto:contact@koustavkundu.com">Email me</a>
-          <a class="btn btn--ghost" href="https://www.linkedin.com/in/koustav-kundu-082228120/" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a class="btn btn--ghost" href="https://www.linkedin.com/in/koustav-kundu-082228120/" target="_blank" rel="noopener">LinkedIn â</a>
         </div>
-        <p class="contact-mail">→ <a href="mailto:contact@koustavkundu.com">contact@koustavkundu.com</a> · Mumbai, India</p>
+        <div class="book-wrap">
+          <button type="button" class="btn btn--solid" id="bookToggle" aria-expanded="false">Book a Consultation</button>
+          <div class="book-panel" id="bookPanel">
+            <h3>Book a 15-minute consultation</h3>
+            <p class="book-help">Pick a date and an evening slot (all times IST). Confirming opens a pre-filled email to request your slot.</p>
+            <div class="book-field">
+              <label for="bookDate">Preferred date</label>
+              <input type="date" id="bookDate" />
+            </div>
+            <div class="book-field">
+              <label>Available slots &middot; 6:00&ndash;9:00 PM IST</label>
+              <div class="slot-grid" id="slotGrid">
+                <button type="button" class="slot" data-time="6:00 PM">6:00 PM</button>
+                <button type="button" class="slot" data-time="6:15 PM">6:15 PM</button>
+                <button type="button" class="slot" data-time="6:30 PM">6:30 PM</button>
+                <button type="button" class="slot" data-time="6:45 PM">6:45 PM</button>
+                <button type="button" class="slot" data-time="7:00 PM">7:00 PM</button>
+                <button type="button" class="slot" data-time="7:15 PM">7:15 PM</button>
+                <button type="button" class="slot" data-time="7:30 PM">7:30 PM</button>
+                <button type="button" class="slot" data-time="7:45 PM">7:45 PM</button>
+                <button type="button" class="slot" data-time="8:00 PM">8:00 PM</button>
+                <button type="button" class="slot" data-time="8:15 PM">8:15 PM</button>
+                <button type="button" class="slot" data-time="8:30 PM">8:30 PM</button>
+                <button type="button" class="slot" data-time="8:45 PM">8:45 PM</button>
+              </div>
+            </div>
+            <div class="book-confirm-row">
+              <button type="button" class="btn btn--solid" id="bookConfirm">Confirm booking</button>
+              <span class="book-status" id="bookStatus" role="status"></span>
+            </div>
+          </div>
+        </div>
+        <p class="contact-mail">â <a href="mailto:contact@koustavkundu.com">contact@koustavkundu.com</a> Â· Mumbai, India</p>
       </div>
     </div>
   </section>
@@ -639,8 +687,8 @@
   <!-- ================= FOOTER ================= -->
   <footer class="site-footer">
     <div class="wrap footer-inner">
-      <span class="mono">© 2026 Koustav Kundu</span>
-      <span class="mono">Built by hand — HTML, CSS &amp; a little JS. No trackers.</span>
+      <span class="mono">Â© 2026 Koustav Kundu</span>
+      <span class="mono">Built by hand â HTML, CSS &amp; a little JS. No trackers.</span>
     </div>
   </footer>
 
@@ -677,10 +725,49 @@
         minute: "2-digit",
         hour12: false,
       });
-      clock.textContent = "MUMBAI · " + now + " IST";
+      clock.textContent = "MUMBAI Â· " + now + " IST";
     }
     tick();
     setInterval(tick, 30000);
+  </script>
+  <script>
+    // Consultation booking widget
+    (function () {
+      var toggle = document.getElementById('bookToggle');
+      var panel = document.getElementById('bookPanel');
+      var grid = document.getElementById('slotGrid');
+      var confirmBtn = document.getElementById('bookConfirm');
+      var status = document.getElementById('bookStatus');
+      var dateInput = document.getElementById('bookDate');
+      var selected = null;
+      if (!toggle || !panel) return;
+      var today = new Date();
+      var iso = today.toISOString().slice(0, 10);
+      if (dateInput) dateInput.min = iso;
+      toggle.addEventListener('click', function () {
+        var open = panel.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      grid.addEventListener('click', function (e) {
+        var btn = e.target.closest('.slot');
+        if (!btn) return;
+        var prev = grid.querySelector('.slot.selected');
+        if (prev) prev.classList.remove('selected');
+        btn.classList.add('selected');
+        selected = btn.getAttribute('data-time');
+        if (status) status.textContent = '';
+      });
+      confirmBtn.addEventListener('click', function () {
+        if (!selected) { status.textContent = 'Please pick a time slot first.'; return; }
+        var d = dateInput && dateInput.value ? dateInput.value : '';
+        var when = d ? (d + ' at ' + selected + ' IST') : (selected + ' IST');
+        var subject = 'Consultation request: ' + when;
+        var body = 'Hi Koustav,\n\nI would like to book a 15-minute consultation.\n\nDate: ' + (d || '(please confirm)') + '\nTime: ' + selected + ' IST\n\nThanks!';
+        var href = 'mailto:contact@koustavkundu.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        window.location.href = href;
+        status.textContent = 'Opening your email to request ' + when + '\u2026';
+      });
+    })();
   </script>
 </body>
 </html>
