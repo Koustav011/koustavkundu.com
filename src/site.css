@@ -1,0 +1,321 @@
+/* ============================================================
+   DESIGN TOKENS
+   Annual-report palette: deep navy ink + marigold accent
+   on cool paper. Widths & heights in the hero chart encode
+   real career data (duration → width, scope → height).
+   ============================================================ */
+:root {
+  --paper:   #F4F6F8;
+  --panel:   #FFFFFF;
+  --ink:     #0B1F3A;
+  --ink-2:   #3B4C63;
+  --navy:    #10294A;
+  --accent:  #EC9B29;
+  --accent-deep: #C77E12;
+  --gain:    #0F8A5F;
+  --line:    #D8DEE7;
+  --line-navy: #2A4066;
+
+  --font-display: "Bricolage Grotesque", Georgia, serif;
+  --font-body: "Public Sans", -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Spline Sans Mono", "Courier New", monospace;
+
+  --radius: 14px;
+  --radius-sm: 8px;
+  --wrap: 1120px;
+  --shadow: 0 1px 2px rgba(11,31,58,.06), 0 10px 30px -12px rgba(11,31,58,.14);
+}
+
+/* ---------- Reset & base ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent-deep); outline-offset: 3px; border-radius: 3px; }
+::selection { background: var(--accent); color: var(--navy); }
+
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: clamp(1.1rem, 4vw, 2rem); }
+section { scroll-margin-top: 96px; }
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent;
+  transition: border-color .3s ease, box-shadow .3s ease;
+}
+.site-header.scrolled { border-bottom-color: var(--line); box-shadow: 0 6px 20px -14px rgba(11,31,58,.25); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 64px; }
+.brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; letter-spacing: .01em; }
+.brand-mark { width: 12px; height: 12px; background: var(--accent); border-radius: 3px; transform: rotate(45deg); flex: none; }
+.site-nav { display: flex; align-items: center; gap: 1.4rem; }
+.site-nav a {
+  font-family: var(--font-mono); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase;
+  text-decoration: none; color: var(--ink-2); padding-block: .3rem;
+  border-bottom: 2px solid transparent; transition: color .2s, border-color .2s;
+}
+.site-nav a:hover { color: var(--ink); border-bottom-color: var(--accent); }
+.clock { font-family: var(--font-mono); font-size: .74rem; letter-spacing: .1em; color: var(--ink-2); white-space: nowrap; }
+
+/* ============================================================
+   HERO — thesis + the career waterfall
+   ============================================================ */
+.hero { padding-block: clamp(3.2rem, 8vw, 5.5rem) clamp(2.6rem, 6vw, 4rem); }
+.hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(2rem, 5vw, 4rem); align-items: end; }
+
+.hero .eyebrow { margin-bottom: 1.1rem; color: var(--accent-deep); }
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5.6vw, 4.3rem);
+  font-weight: 750;
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  font-variation-settings: "opsz" 80;
+}
+.hero h1 .accent-line { color: var(--accent-deep); }
+.hero .lede { margin-top: 1.4rem; max-width: 34rem; font-size: 1.1rem; color: var(--ink-2); }
+.hero .lede strong { color: var(--ink); font-weight: 600; }
+
+.cta-row { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.8rem; }
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-family: var(--font-mono); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
+  text-decoration: none; padding: .8rem 1.35rem; border-radius: 999px;
+  border: 1.5px solid var(--ink); transition: transform .15s ease, background .2s, color .2s, border-color .2s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn--solid { background: var(--ink); color: var(--paper); }
+.btn--solid:hover { background: var(--navy); }
+.btn--ghost { background: transparent; color: var(--ink); }
+.btn--ghost:hover { border-color: var(--accent-deep); color: var(--accent-deep); }
+
+.hero-micro { margin-top: 1.3rem; }
+
+/* ----- Career waterfall chart (pure CSS) -----
+   Column WIDTH  = time spent (flex-grow ≈ years)
+   Column HEIGHT = scope of the role                    */
+.chart { position: relative; }
+.chart-frame {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.4rem 1.4rem 1rem;
+}
+.chart-title { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1.1rem; gap: 1rem; }
+.chart-title .mono:last-child { color: var(--gain); letter-spacing: .08em; }
+.bars {
+  display: flex; align-items: flex-end; gap: clamp(.4rem, 1.2vw, .8rem);
+  height: 250px;
+  background:
+    repeating-linear-gradient(to top, transparent 0 49px, var(--line) 49px 50px);
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 0;
+}
+.col { position: relative; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; min-width: 0; }
+.bar {
+  position: relative;
+  border-radius: 6px 6px 0 0;
+  background: var(--navy);
+  height: var(--h);
+  transform-origin: bottom;
+}
+.bar--outline { background: transparent; border: 2px dashed var(--ink-2); border-bottom: none; }
+.bar--accent { background: var(--accent); }
+.bar--next { background: transparent; border: 2px dashed var(--accent-deep); border-bottom: none; }
+.col:hover .bar, .col:focus-within .bar { filter: brightness(1.12); }
+.tip {
+  position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(4px);
+  background: var(--ink); color: var(--paper);
+  font-family: var(--font-mono); font-size: .68rem; letter-spacing: .04em;
+  padding: .45rem .65rem; border-radius: 6px; white-space: nowrap;
+  opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease; z-index: 5;
+}
+.tip::after { content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: var(--ink); }
+.col:hover .tip, .col:focus-within .tip { opacity: 1; transform: translateX(-50%) translateY(0); }
+/* Right-edge columns: anchor tooltips to the right so they never push the page wider on phones. */
+.col:nth-last-child(-n+2) .tip { left: auto; right: 0; transform: translateY(4px); }
+.col:nth-last-child(-n+2):hover .tip, .col:nth-last-child(-n+2):focus-within .tip { transform: translateY(0); }
+.col:nth-last-child(-n+2) .tip::after { left: auto; right: 14px; transform: none; }
+.col-label {
+  margin-top: .55rem; text-align: center;
+  font-family: var(--font-mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-2); line-height: 1.35; white-space: nowrap;
+}
+.chart-caption { margin-top: .9rem; text-align: right; }
+
+/* ============================================================
+   TICKER STRIP
+   ============================================================ */
+.ticker { border-block: 1px solid var(--line); background: var(--panel); overflow: hidden; }
+.ticker-track { display: flex; width: max-content; gap: 2.75rem; padding-block: .72rem; animation: tick 42s linear infinite; }
+.ticker:hover .ticker-track { animation-play-state: paused; }
+.ticker-item { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-2); white-space: nowrap; }
+.ticker-item .up { color: var(--gain); }
+@keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* ============================================================
+   SECTIONS — shared scaffolding
+   ============================================================ */
+.section { padding-block: clamp(3.2rem, 8vw, 5.5rem); }
+.section-head { display: grid; grid-template-columns: 220px 1fr; gap: 1rem 3rem; margin-bottom: 2.4rem; align-items: start; }
+.section-head h2 {
+  font-family: var(--font-display); font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+  font-weight: 700; line-height: 1.1; letter-spacing: -0.01em;
+}
+.section-kicker { padding-top: .5rem; color: var(--accent-deep); }
+
+/* ---------- About ---------- */
+.about-grid { display: grid; grid-template-columns: 220px 1fr; gap: 1rem 3rem; }
+.about-copy { max-width: 42rem; display: grid; gap: 1.15rem; color: var(--ink-2); }
+.about-copy strong { color: var(--ink); font-weight: 600; }
+
+/* ---------- Experience ---------- */
+.jobs { display: grid; gap: 1.2rem; }
+.job {
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: clamp(1.4rem, 3vw, 2rem); box-shadow: var(--shadow);
+}
+.job-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .5rem 1.5rem; margin-bottom: .3rem; }
+.job h3 { font-family: var(--font-display); font-size: 1.32rem; font-weight: 700; letter-spacing: -0.005em; }
+.job .period {
+  font-family: var(--font-mono); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink); background: var(--paper); border: 1px solid var(--line);
+  padding: .3rem .7rem; border-radius: 999px; white-space: nowrap;
+}
+.job .org { font-family: var(--font-mono); font-size: .76rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); margin-bottom: 1.1rem; }
+.job ul { list-style: none; display: grid; gap: .65rem; color: var(--ink-2); }
+.job li { padding-left: 1.4rem; position: relative; }
+.job li::before { content: "—"; position: absolute; left: 0; color: var(--accent-deep); }
+
+/* Current role: inverted card */
+.job--now { background: var(--navy); border-color: var(--line-navy); color: #E9EEF6; }
+.job--now h3 { color: #FFFFFF; }
+.job--now .org { color: #9FB1CC; }
+.job--now .period { background: transparent; border-color: var(--line-navy); color: var(--accent); }
+.job--now ul { color: #C6D2E4; }
+.job--now li::before { color: var(--accent); }
+
+/* ---------- Lab / projects ---------- */
+.lab-note { max-width: 42rem; color: var(--ink-2); margin-top: -1.4rem; margin-bottom: 2.2rem; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.2rem; }
+.card {
+  background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 1.5rem; display: flex; flex-direction: column; gap: .7rem;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--accent); }
+.card h3 { font-family: var(--font-display); font-size: 1.13rem; font-weight: 700; }
+.card p { color: var(--ink-2); font-size: .96rem; flex: 1; }
+.tags { display: flex; flex-wrap: wrap; gap: .45rem; }
+.tag {
+  font-family: var(--font-mono); font-size: .64rem; letter-spacing: .1em; text-transform: uppercase;
+  border: 1px solid var(--line); border-radius: 999px; padding: .25rem .6rem; color: var(--ink-2);
+}
+
+/* ---------- Toolkit ---------- */
+.kits { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem 3rem; }
+.kit h3 { font-family: var(--font-mono); font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-deep); margin-bottom: 1rem; }
+.chips { display: flex; flex-wrap: wrap; gap: .55rem; }
+.chip {
+  font-family: var(--font-mono); font-size: .72rem; letter-spacing: .06em;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 999px;
+  padding: .45rem .85rem; color: var(--ink);
+}
+
+/* ---------- Education ---------- */
+.edu-rows { border-top: 1px solid var(--line); }
+.edu-row { display: grid; grid-template-columns: 120px 1fr auto; gap: 1rem 2rem; align-items: baseline; padding-block: 1.3rem; border-bottom: 1px solid var(--line); }
+.edu-row .year { font-family: var(--font-mono); font-size: .8rem; letter-spacing: .1em; color: var(--accent-deep); }
+.edu-row .what { font-weight: 600; }
+.edu-row .where { color: var(--ink-2); font-size: .95rem; }
+.edu-row .meta { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .08em; color: var(--ink-2); white-space: nowrap; }
+
+/* ---------- Contact ---------- */
+.contact { background: var(--navy); color: #E9EEF6; border-radius: calc(var(--radius) + 8px); padding: clamp(2.6rem, 6vw, 4.2rem); position: relative; overflow: hidden; }
+.contact::after {
+  content: ""; position: absolute; right: -70px; top: -70px; width: 260px; height: 260px;
+  background: var(--accent); opacity: .12; border-radius: 40px; transform: rotate(45deg); pointer-events: none;
+}
+.contact .mono { color: var(--accent); }
+.contact h2 { font-family: var(--font-display); font-size: clamp(2.1rem, 5vw, 3.2rem); font-weight: 750; letter-spacing: -0.01em; margin: .7rem 0 1rem; color: #fff; }
+.contact p { max-width: 34rem; color: #C6D2E4; }
+.contact .cta-row { margin-top: 1.8rem; }
+.contact .btn--solid { background: var(--accent); border-color: var(--accent); color: var(--navy); }
+.contact .btn--solid:hover { background: #F5AC42; border-color: #F5AC42; }
+.contact .btn--ghost { border-color: var(--line-navy); color: #E9EEF6; }
+.contact .btn--ghost:hover { border-color: var(--accent); color: var(--accent); }
+.contact-mail { margin-top: 1.6rem; font-family: var(--font-mono); font-size: .8rem; letter-spacing: .06em; color: #9FB1CC; }
+.contact-mail a { color: #E9EEF6; text-decoration-color: var(--accent); text-underline-offset: 4px; }
+
+/* ---------- Footer ---------- */
+.site-footer { padding: 2.2rem 0 2.8rem; }
+.footer-inner { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .6rem 2rem; }
+
+/* ============================================================
+   MOTION — driven by GSAP + Lenis (see src/lib/motion.ts).
+   CSS only keeps the ticker loop and the reduced-motion fallback.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .ticker-track { animation: none; }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; align-items: start; }
+  .section-head, .about-grid { grid-template-columns: 1fr; gap: .8rem; }
+  .kits { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .site-nav { display: none; }
+  .bars { height: 210px; }
+  .col-label { font-size: .56rem; }
+  .edu-row { grid-template-columns: 90px 1fr; }
+  .edu-row .meta { grid-column: 2; }
+}
+@media (max-width: 560px) {
+  .clock { display: none; }
+}
+
+/* ===== Consultation booking ===== */
+.book-wrap { margin-top: 22px; }
+.book-panel { display: none; margin-top: 20px; padding: 22px; border: 1px solid rgba(244,246,248,.18); border-radius: 16px; background: rgba(244,246,248,.04); max-width: 560px; }
+.book-panel.open { display: block; }
+.book-panel h3 { margin: 0 0 4px; font-size: 18px; color: var(--paper); }
+.book-panel .book-help { margin: 0 0 16px; font-size: 13px; opacity: .8; }
+.book-field { margin-bottom: 16px; }
+.book-field label { display: block; font-family: "Spline Sans Mono", monospace; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; opacity: .75; margin-bottom: 8px; }
+.book-field input[type=date] { width: 100%; max-width: 240px; padding: 10px 12px; border-radius: 10px; border: 1px solid rgba(244,246,248,.25); background: rgba(244,246,248,.06); color: var(--paper); font-family: inherit; font-size: 14px; }
+.slot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 8px; }
+.slot { cursor: pointer; text-align: center; padding: 10px 6px; border-radius: 999px; border: 1px solid rgba(244,246,248,.25); background: transparent; color: var(--paper); font-family: "Spline Sans Mono", monospace; font-size: 12px; letter-spacing: .5px; transition: border-color .15s ease, background .15s ease, color .15s ease; }
+.slot:hover { border-color: var(--accent); }
+.slot.selected { background: var(--accent); border-color: var(--accent); color: var(--ink); font-weight: 600; }
+.book-confirm-row { margin-top: 18px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.book-status { font-size: 13px; opacity: .9; min-height: 1em; }
+/* ---------- Cal.com booking pop-up button ---------- */
+.book-cta { margin-top: 1.8rem; }
+.book-cta .btn { cursor: pointer; border: none; font: inherit; }
+.book-note { margin-top: .7rem; color: var(--ink-2); }

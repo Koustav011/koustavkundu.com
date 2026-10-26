@@ -1,0 +1,5 @@
+/* Tailwind is available for new work; the site's own styles below are unlayered,
+   so they always win over Tailwind's base layer and the look stays identical. */
+@import "tailwindcss";
+@import "lenis/dist/lenis.css";
+@import "./site.css";
