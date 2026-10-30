@@ -6,7 +6,7 @@ export function Work() {
   return (
     <section className="section" id="work" style={{ paddingTop: 0 }}>
       <div className="wrap">
-        <SectionHead kicker="Experience" title="Ten years around lending, one loan at a time." />
+        <SectionHead title="Seven years in banking, four in lending." />
         <div className="jobs">
           {JOBS.map((job) => (
             <article className={`job${job.now ? ' job--now' : ''} reveal`} key={job.title}>

@@ -33,7 +33,7 @@ export function Header() {
         <a
           className="brand"
           href="#top"
-          aria-label="Koustav Kundu — back to top"
+          aria-label="Koustav Kundu, back to top"
           onClick={(e) => {
             e.preventDefault();
             scrollTo(0);
@@ -59,7 +59,7 @@ export function Header() {
           ))}
         </nav>
         <span className="clock" aria-hidden="true">
-          MUMBAI · {time} IST
+          Mumbai · {time} IST
         </span>
       </div>
     </header>

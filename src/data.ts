@@ -15,11 +15,11 @@ export const NAV = [
 /** Career waterfall: grow = years in role (column width), h = scope (bar height). */
 export type BarKind = 'solid' | 'outline' | 'accent' | 'next';
 export const CAREER: { grow: number; h: number; kind: BarKind; tip: string; label: [string, string] }[] = [
-  { grow: 2.7, h: 34, kind: 'solid', tip: 'Associate · Retail Banking & Custody Ops', label: ["'16–'19", 'TCS'] },
-  { grow: 3, h: 52, kind: 'outline', tip: 'MBA (Finance) · Symbiosis, Pune', label: ["'19–'22", 'MBA'] },
-  { grow: 0.8, h: 60, kind: 'solid', tip: 'Finance Intern · Financial Analyst', label: ["'21", 'Tradeify'] },
-  { grow: 4.1, h: 86, kind: 'accent', tip: 'Product Manager · Business Loans Group', label: ["'22–now", 'ICICI'] },
-  { grow: 1, h: 100, kind: 'next', tip: "Open to what's next", label: ['next', '↗'] },
+  { grow: 2.7, h: 34, kind: 'solid', tip: 'Associate · Retail Banking & Custody Ops', label: ['’16-’19', 'TCS'] },
+  { grow: 3, h: 52, kind: 'outline', tip: 'MBA (Finance) · Symbiosis, Pune', label: ['’19-’22', 'MBA'] },
+  { grow: 0.25, h: 60, kind: 'solid', tip: 'Finance Intern · Financial Analyst', label: ['’21', 'Tradeify'] },
+  { grow: 4.4, h: 86, kind: 'accent', tip: 'Product Manager · Business Loans Group', label: ['’22-now', 'ICICI'] },
+  { grow: 1, h: 100, kind: 'next', tip: 'Open to what’s next', label: ['next', '↗'] },
 ];
 
 export const TICKER = [
@@ -38,21 +38,21 @@ export const TICKER = [
 export type Job = { title: string; period: string; org: string; now?: boolean; points: string[] };
 export const JOBS: Job[] = [
   {
-    title: 'Product Manager — Business Loans Group',
-    period: 'Jun 2022 — Present',
+    title: 'Product Manager, Business Loans Group',
+    period: 'Jun 2022 to present',
     org: 'ICICI Bank Ltd · Mumbai',
     now: true,
     points: [
-      'Own renewals for the Business Loans Group portfolio — granular follow-ups with business teams, training on transaction-based renewals, and first line for product escalations.',
+      'Own renewals for the Business Loans Group portfolio: granular follow-ups with business teams, training on transaction-based renewals, and first line for product escalations.',
       'Built the BLG portfolio waterfall, then partnered with DSAG and the Policy team to automate its preparation and input files end-to-end, including UAT on sample files.',
-      'Drove **Smart Top-Up** — converting unsecured top-up loans into secured, enhanced top-ups.',
+      'Drove **Smart Top-Up**, converting unsecured top-up loans into secured, enhanced top-ups.',
       'Championed **Saral-Vridhi** across business, Unified Lending Platform (ULP) and Policy teams, bringing the pre-approved enhancement facility for secured customers onto the digital platform.',
       'Coordinated project planning and execution across team members and team leads.',
     ],
   },
   {
-    title: 'Finance Intern — Financial Analyst',
-    period: 'Apr 2021 — Jun 2021',
+    title: 'Finance Intern, Financial Analyst',
+    period: 'Apr 2021 to Jun 2021',
     org: 'Tradeify India Pvt. Ltd · Pune',
     points: [
       'Built financial models supporting the P&L statement and balance sheet.',
@@ -60,14 +60,14 @@ export const JOBS: Job[] = [
     ],
   },
   {
-    title: 'Associate — Retail Banking & Custody Operations',
-    period: 'Jun 2016 — Feb 2019',
+    title: 'Associate, Retail Banking & Custody Operations',
+    period: 'Jun 2016 to Feb 2019',
     org: 'Tata Consultancy Services · Gurugram',
     points: [
       'Performed customer due diligence on payments, fund transfers and account servicing requests.',
-      'Ran account-lifecycle operations — card blocking, statements, phone-banking changes, and account closures with balance transfer.',
+      'Ran account-lifecycle operations: card blocking, statements, phone-banking changes, and account closures with balance transfer.',
       'Trained new colleagues on the Engage One application; prepared daily, weekly and monthly MIS and dashboards.',
-      'Performed maker–checker calibration and reporting.',
+      'Performed maker-checker calibration and reporting.',
     ],
   },
 ];
@@ -75,7 +75,7 @@ export const JOBS: Job[] = [
 export const PROJECTS = [
   {
     title: 'Raspberry Pi home server',
-    body: 'A Pi 5 that never sleeps — runs a self-hosted automation hub with a Telegram bot gateway handling daily tasks, alerts and small agents.',
+    body: 'A Pi 5 that never sleeps, running a self-hosted automation hub with a Telegram bot gateway handling daily tasks, alerts and small agents.',
     tags: ['Raspberry Pi', 'Linux', 'Telegram API'],
   },
   {
@@ -85,12 +85,12 @@ export const PROJECTS = [
   },
   {
     title: 'LinkedIn content pipeline',
-    body: 'Scripts that draft finance and markets posts with LLM APIs — every draft passes through a human approval step before anything ships.',
+    body: 'Scripts that draft finance and markets posts with LLM APIs; every draft passes through a human approval step before anything ships.',
     tags: ['Python', 'LLM APIs', 'Automation'],
   },
   {
     title: '3D floor-plan viewer',
-    body: 'An interactive Three.js "dollhouse" of a home under construction — used to test interior layouts and walk through rooms before they exist.',
+    body: 'An interactive Three.js “dollhouse” of a home under construction, used to test interior layouts and walk through rooms before they exist.',
     tags: ['Three.js', 'JavaScript'],
   },
 ];

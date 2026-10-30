@@ -25,8 +25,7 @@ export function Hero() {
     <section className="hero" ref={ref}>
       <div className="wrap hero-grid">
         <div>
-          <p className="mono eyebrow hero-rise">Product Manager · Business Loans Group · ICICI Bank</p>
-          <h1 aria-label="Lending products by day. A builder's lab by night.">
+          <h1 aria-label="Lending products by day. A builder’s lab by night.">
             <SplitText
               tag="span"
               text="Lending products by day."
@@ -34,34 +33,31 @@ export function Hero() {
               trigger="load"
               delay={22}
               duration={0.9}
-              hoverEffect="lift"
             />
             <br />
             <SplitText
               tag="span"
-              className="accent-line"
-              text="A builder's lab by night."
+              text="A builder’s lab by night."
               textAlign="left"
               trigger="load"
               delay={22}
               duration={0.9}
-              hoverEffect="lift"
             />
           </h1>
           <p className="lede hero-rise">
-            I'm <strong>Koustav Kundu</strong> — I run business-loan renewals and digital lending journeys at ICICI
-            Bank, Mumbai. After hours, I automate whatever repeats twice: with <strong>Python</strong>, a{' '}
-            <strong>Raspberry Pi</strong>, and a healthy respect for markets.
+            I’m <strong>Koustav Kundu</strong>, a Product Manager in ICICI Bank’s Business Loans Group in Mumbai, running
+            renewals and digital lending journeys. After hours, I automate whatever repeats twice: with{' '}
+            <strong>Python</strong>, a <strong>Raspberry Pi</strong>, and a healthy respect for markets.
           </p>
           <div className="cta-row hero-rise">
             <a className="btn btn--solid" href={`mailto:${EMAIL}`}>
               Email me
             </a>
             <a className="btn btn--ghost" href={LINKEDIN} target="_blank" rel="noopener">
-              LinkedIn ↗
+              LinkedIn
             </a>
           </div>
-          <p className="mono hero-micro hero-rise">Open to conversations on product, credit &amp; automation.</p>
+          <p className="label hero-micro hero-rise">Open to conversations on product, credit &amp; automation.</p>
         </div>
         <CareerChart />
       </div>
