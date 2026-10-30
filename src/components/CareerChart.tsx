@@ -10,11 +10,11 @@ const barClass: Record<BarKind, string> = {
 /** Career waterfall: column width = years in role, bar height = scope. Pure CSS; GSAP grows the bars in Hero. */
 export function CareerChart() {
   return (
-    <div className="chart hero-rise" aria-label="Career waterfall chart">
+    <div className="chart hero-rise" role="group" aria-label="Career waterfall chart">
       <div className="chart-frame">
         <div className="chart-title">
-          <span className="mono">Career · Waterfall view</span>
-          <span className="mono">2016 → today ▲</span>
+          <span className="label">Career · Waterfall view</span>
+          <span className="label">2016 → today ▲</span>
         </div>
         <div className="bars">
           {CAREER.map((c) => (
@@ -29,7 +29,7 @@ export function CareerChart() {
             </div>
           ))}
         </div>
-        <p className="mono chart-caption">width = time · height = scope</p>
+        <p className="label chart-caption">width = time · height = scope</p>
       </div>
     </div>
   );

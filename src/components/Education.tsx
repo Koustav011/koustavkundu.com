@@ -5,7 +5,7 @@ export function Education() {
   return (
     <section className="section" id="education" style={{ paddingTop: 0 }}>
       <div className="wrap">
-        <SectionHead kicker="Education" title="Credentials on file." />
+        <SectionHead title="Credentials on file." />
         <div className="edu-rows reveal">
           {EDUCATION.map((e) => (
             <div className="edu-row" key={e.what}>

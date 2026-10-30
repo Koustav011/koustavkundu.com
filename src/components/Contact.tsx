@@ -44,34 +44,32 @@ export function Contact() {
     <section className="section" id="contact" style={{ paddingTop: 0 }}>
       <div className="wrap">
         <div className="contact reveal">
-          <p className="mono">Contact</p>
           <h2>Say hello.</h2>
           <p>
-            For roles, product problems, market talk, or a good automation idea — my inbox is open. Usually reply within
-            a day.
+            For roles, product problems, market talk, or a good automation idea, my inbox is open. I read every message
+            and reply as soon as I can.
           </p>
           <div className="cta-row">
             <a className="btn btn--solid" href={`mailto:${EMAIL}`}>
               Email me
             </a>
             <a className="btn btn--ghost" href={LINKEDIN} target="_blank" rel="noopener">
-              LinkedIn ↗
+              LinkedIn
             </a>
-          </div>
-          {/* Cal.com pop-up booking button (opens overlay; visitor picks consultation type) */}
-          <div className="book-cta">
+            {/* Cal.com pop-up booking button (opens overlay; visitor picks consultation type) */}
             <button
-              className="btn btn--solid"
+              className="btn btn--ghost"
+              type="button"
               data-cal-namespace="booking"
               data-cal-link={CAL_LINK}
               data-cal-config='{"layout":"month_view"}'
             >
-              Book a call ↗
+              Book a call
             </button>
-            <p className="book-note mono">Pick a Weekday or Weekend slot</p>
           </div>
+          <p className="book-note label">Pick a weekday or weekend slot</p>
           <p className="contact-mail">
-            → <a href={`mailto:${EMAIL}`}>{EMAIL}</a> · Mumbai, India
+            <a href={`mailto:${EMAIL}`}>{EMAIL}</a> · Mumbai, India
           </p>
         </div>
       </div>

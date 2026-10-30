@@ -5,7 +5,7 @@ export function Toolkit() {
   return (
     <section className="section" id="toolkit" style={{ paddingTop: 0 }}>
       <div className="wrap">
-        <SectionHead kicker="Toolkit" title="Two desks, one operator." />
+        <SectionHead title="Two desks, one operator." />
         <div className="kits">
           {KITS.map((kit) => (
             <div className="kit reveal" key={kit.title}>
