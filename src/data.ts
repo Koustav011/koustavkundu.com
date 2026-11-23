@@ -89,16 +89,6 @@ export const PROJECTS: { title: string; body: string; tags: string[]; feature?: 
     body: 'Python screener for NSE stocks that blends technical and fundamental filters, plus a position sizer built on fixed-fractional risk and a 2:1 reward-to-risk floor.',
     tags: ['Python', 'Pandas', 'NSE'],
   },
-  {
-    title: 'LinkedIn content pipeline',
-    body: 'Scripts that draft finance and markets posts with LLM APIs; every draft passes through a human approval step before anything ships.',
-    tags: ['Python', 'LLM APIs', 'Automation'],
-  },
-  {
-    title: '3D floor-plan viewer',
-    body: 'An interactive Three.js “dollhouse” of a home under construction, used to test interior layouts and walk through rooms before they exist.',
-    tags: ['Three.js', 'JavaScript'],
-  },
 ];
 
 export const KITS = [
