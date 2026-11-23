@@ -9,7 +9,7 @@ export function Lab() {
         <p className="lab-note reveal">Personal projects, built for fun, kept because they turned out useful.</p>
         <div className="cards">
           {PROJECTS.map((p) => (
-            <article className="card reveal" key={p.title}>
+            <article className={`card${p.feature ? ' card--feature' : ''} reveal`} key={p.title}>
               <h3>{p.title}</h3>
               <p>{p.body}</p>
               <div className="tags">

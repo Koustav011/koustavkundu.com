@@ -72,7 +72,13 @@ export const JOBS: Job[] = [
   },
 ];
 
-export const PROJECTS = [
+export const PROJECTS: { title: string; body: string; tags: string[]; feature?: boolean }[] = [
+  {
+    title: 'ESP Deck: a stock ticker for my desk',
+    body: 'An ESP32 with a small colour screen that shows live NSE prices, my watchlist and alerts, built from the firmware up. A cloud server feeds it, runs nightly research jobs and a private trading-research website, and an Android app manages the device. A few friends run their own units off the same server.',
+    tags: ['ESP32 / C++', 'Python', 'AWS', 'Android'],
+    feature: true,
+  },
   {
     title: 'Raspberry Pi home server',
     body: 'A Pi 5 that never sleeps, running a self-hosted automation hub with a Telegram bot gateway handling daily tasks, alerts and small agents.',

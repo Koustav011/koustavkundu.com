@@ -7,15 +7,16 @@ import { CareerChart } from './CareerChart';
 export function Hero() {
   const ref = useRef<HTMLElement>(null);
 
-  // The one orchestrated moment: copy rises in, then the career bars grow left to right.
+  // The one orchestrated moment. Lead: the headline, word by word, line two just behind line one.
+  // Support overlaps the tail of the headline (lede, CTAs, chart), then the career bars grow left to right.
   useGSAP(
     () => {
       if (prefersReducedMotion()) return;
       const tl = gsap.timeline({ defaults: { ease: EASE } });
-      tl.from('.hero-rise', { opacity: 0, y: 18, duration: 0.7, stagger: 0.1 }, 0.05).from(
+      tl.from('.hero-rise', { opacity: 0, y: 12, duration: 0.6, stagger: 0.07 }, 0.4).from(
         '.bar',
-        { scaleY: 0, duration: 0.8, stagger: 0.15, transformOrigin: 'bottom' },
-        0.45,
+        { scaleY: 0.04, duration: 0.7, stagger: { each: 0.12, ease: 'power1.in' }, transformOrigin: 'bottom' },
+        0.65,
       );
     },
     { scope: ref },
@@ -31,8 +32,12 @@ export function Hero() {
               text="Lending products by day."
               textAlign="left"
               trigger="load"
-              delay={22}
-              duration={0.9}
+              splitType="words"
+              delay={55}
+              duration={0.7}
+              ease={EASE}
+              from={{ opacity: 0, y: 28 }}
+              to={{ opacity: 1, y: 0, delay: 0 }}
             />
             <br />
             <SplitText
@@ -40,8 +45,12 @@ export function Hero() {
               text="A builder’s lab by night."
               textAlign="left"
               trigger="load"
-              delay={22}
-              duration={0.9}
+              splitType="words"
+              delay={55}
+              duration={0.7}
+              ease={EASE}
+              from={{ opacity: 0, y: 28 }}
+              to={{ opacity: 1, y: 0, delay: 0.22 }}
             />
           </h1>
           <p className="lede hero-rise">
