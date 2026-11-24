@@ -107,7 +107,7 @@ export const KITS = [
   },
   {
     title: 'Tech & tinkering',
-    chips: ['Python', 'Pandas / NumPy', 'SQL', 'Excel', 'REST APIs', 'Linux / Raspberry Pi', 'Git', 'Three.js (basics)'],
+    chips: ['Python', 'Pandas / NumPy', 'SQL', 'Excel', 'REST APIs', 'Linux / Raspberry Pi', 'Git'],
   },
 ];
 

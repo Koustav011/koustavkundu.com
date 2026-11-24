@@ -17,7 +17,7 @@ export function About() {
           </p>
           <p className="reveal">
             Off hours, my desk looks different, with a Raspberry Pi home server, Python screeners for Indian equities, and
-            small pipelines that stitch LLM APIs into daily workflows. The rule of the lab is simple:{' '}
+            an ESP32 stock ticker fed by its own cloud server. The rule of the lab is simple:{' '}
             <strong>if a task repeats twice, it gets a script.</strong>
           </p>
         </div>
