@@ -3,12 +3,9 @@ import { gsap, ScrollTrigger, useGSAP, prefersReducedMotion, EASE } from './lib/
 import { SmoothScroll } from './components/SmoothScroll';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { Ticker } from './components/Ticker';
-import { About } from './components/About';
 import { Work } from './components/Work';
 import { Lab } from './components/Lab';
 import { Toolkit } from './components/Toolkit';
-import { Education } from './components/Education';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 
@@ -36,12 +33,9 @@ export default function App() {
       <Header />
       <main ref={main}>
         <Hero />
-        <Ticker />
-        <About />
         <Work />
         <Lab />
         <Toolkit />
-        <Education />
         <Contact />
       </main>
       <Footer />

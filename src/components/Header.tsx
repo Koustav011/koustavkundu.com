@@ -57,9 +57,20 @@ export function Header() {
               {item.label}
             </a>
           ))}
+          <a
+            className="nav-cta"
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollTo('contact');
+              history.replaceState(null, '', '#contact');
+            }}
+          >
+            Contact
+          </a>
         </nav>
-        <span className="clock" aria-hidden="true">
-          Mumbai · {time} IST
+        <span className="clock" title="My local time, for planning a call">
+          {time} in Mumbai
         </span>
       </div>
     </header>

@@ -148,7 +148,14 @@ section { scroll-margin-top: 96px; }
   border-bottom: 2px solid var(--ink);
   padding-bottom: 0;
 }
-.col { position: relative; display: flex; flex-direction: column; justify-content: flex-end; flex: 1 1 0; height: 100%; min-width: 8px; }
+.col {
+  position: relative; display: flex; flex-direction: column; justify-content: flex-end; flex: 1 1 0; height: 100%; min-width: 8px;
+  background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer;
+}
+.col .bar { display: block; width: 100%; transition: filter .2s ease, opacity .2s ease; }
+.bars:has(.is-on) .col:not(.is-on) .bar { opacity: .55; }
+.col.is-on .col-label { color: var(--ink); font-weight: 600; }
+.col:focus-visible { outline-offset: 4px; }
 .bar {
   position: relative;
   border-radius: 6px 6px 0 0;
@@ -159,64 +166,31 @@ section { scroll-margin-top: 96px; }
 .bar--outline { background: transparent; border: 2px dashed var(--ink-2); border-bottom: none; }
 .bar--accent { background: var(--accent); }
 .bar--next { background: transparent; border: 2px dashed var(--accent-deep); border-bottom: none; }
-.col:focus-within .bar { filter: brightness(1.12); }
-.tip {
-  position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(4px);
-  background: var(--ink); color: var(--paper);
-  font-size: .75rem;
-  padding: .45rem .65rem; border-radius: 6px; white-space: nowrap;
-  pointer-events: none; transition: opacity .2s ease, transform .2s ease; z-index: 5;
-}
-.js .tip { opacity: 0; }
-.tip::after { content: ""; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: var(--ink); }
-.col:focus-within .tip { opacity: 1; transform: translateX(-50%) translateY(0); }
-.col:focus-within .tip { transition-delay: 0s; }
-/* Right-edge columns: anchor tooltips to the right so they never push the page wider on phones. */
-.col:nth-last-child(-n+2) .tip { left: auto; right: 0; transform: translateY(4px); }
-.col:nth-last-child(-n+2):focus-within .tip { transform: translateY(0); }
-.col:nth-last-child(-n+2) .tip::after { left: auto; right: 14px; transform: none; }
-/* Labels are wider than the shortest columns, so they centre on the column and overhang it. */
 .col-label {
   position: relative; left: 50%; translate: -50% 0; width: max-content;
   margin-top: .55rem; text-align: center;
   font-size: .75rem;
   color: var(--ink-2); line-height: 1.35; white-space: nowrap;
 }
-.chart-caption { margin-top: .9rem; text-align: right; }
-
-/* ============================================================
-   TICKER STRIP
-   ============================================================ */
-.ticker { position: relative; border-block: 1px solid var(--line); background: var(--panel); overflow: hidden; }
-.ticker-track { display: flex; width: max-content; gap: 2.75rem; padding-block: .72rem; animation: tick 42s linear infinite; }
-.ticker:focus-within .ticker-track, .ticker.is-paused .ticker-track { animation-play-state: paused; }
-.ticker-item { font-size: .875rem; color: var(--ink-2); white-space: nowrap; }
-.ticker-item .up { color: var(--gain); }
-.ticker-toggle {
-  position: absolute; inset-block: 0; right: 0; padding-inline: 1rem;
-  background: var(--panel); border: 0; border-left: 1px solid var(--line);
-  font-family: var(--font-body); font-size: .875rem; font-weight: 600; color: var(--ink); cursor: pointer;
-  transition: color .2s;
-}
-.ticker-toggle:active { color: var(--ink-2); }
-.ticker-toggle:focus-visible { outline-offset: -3px; }
-@keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.chart-caption { margin-top: .9rem; font-size: .8125rem; }
+.chart-hint { color: var(--ink-2); }
+.stage { margin-top: 2.6rem; padding-top: 1rem; border-top: 1px solid var(--line); min-height: 7.6rem; }
+.stage-role { font-family: var(--font-display); font-weight: 700; font-size: 1.12rem; line-height: 1.25; }
+.stage-where { font-size: .9rem; color: var(--ink-2); margin-top: .15rem; }
+.stage-line { font-size: .95rem; color: var(--ink-2); margin-top: .5rem; line-height: 1.55; }
 
 /* ============================================================
    SECTIONS: shared scaffolding
    ============================================================ */
 .section { padding-block: clamp(3.2rem, 8vw, 5.5rem); }
-.section-head { margin-bottom: 2.4rem; }
-.section-head h2, .about-grid h2 {
+.section-head { margin-bottom: 2.2rem; display: grid; gap: .8rem; }
+.section-intro { max-width: 40rem; color: var(--ink-2); }
+.section-head h2 {
   font-family: var(--font-display); font-size: clamp(1.7rem, 3.4vw, 2.5rem);
   font-weight: 700; line-height: 1.1; letter-spacing: -0.01em;
   overflow-wrap: break-word; min-width: 0; text-wrap: balance;
 }
 
-/* ---------- About ---------- */
-.about-grid { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 1rem 3rem; }
-.about-copy { max-width: 42rem; display: grid; gap: 1.15rem; color: var(--ink-2); }
-.about-copy strong { color: var(--ink); font-weight: 600; }
 
 /* ---------- Experience ---------- */
 .jobs { display: grid; gap: 1.2rem; }
@@ -244,7 +218,6 @@ section { scroll-margin-top: 96px; }
 .job--now li::before { background: var(--accent); }
 
 /* ---------- Lab / projects ---------- */
-.lab-note { max-width: 42rem; color: var(--ink-2); margin-top: -1.4rem; margin-bottom: 2.2rem; }
 .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.2rem; }
 .card {
   background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
@@ -252,11 +225,11 @@ section { scroll-margin-top: 96px; }
 }
 .card h3 { font-family: var(--font-display); font-size: 1.13rem; font-weight: 700; }
 .card p { color: var(--ink-2); font-size: .96rem; flex: 1; }
-.tags { display: flex; flex-wrap: wrap; gap: .1rem 1rem; }
-.tag { font-size: .875rem; font-weight: 600; color: var(--ink-2); }
+.card .tags { flex: 0; font-size: .875rem; font-weight: 600; color: var(--ink-2); }
 
 /* ---------- Toolkit ---------- */
-.kits { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem 3rem; }
+.kit-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2.4rem 3rem; }
+.kit--edu { grid-column: 1 / -1; }
 .kit h3 { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 1rem; }
 .chips { display: flex; flex-wrap: wrap; gap: .55rem; }
 .chip {
@@ -267,10 +240,12 @@ section { scroll-margin-top: 96px; }
 
 /* ---------- Education ---------- */
 .edu-rows { border-top: 1px solid var(--line); }
+.edu-row:last-child { border-bottom: 0; }
 .edu-row { display: grid; grid-template-columns: 120px 1fr auto; gap: 1rem 2rem; align-items: baseline; padding-block: 1.3rem; border-bottom: 1px solid var(--line); }
 .edu-row .year { font-family: var(--font-mono); font-size: .875rem; color: var(--accent-deep); }
 .edu-row .what { font-weight: 600; }
-.edu-row .where { color: var(--ink-2); font-size: .95rem; }
+.edu-row .what { display: block; }
+.edu-row .where { display: block; color: var(--ink-2); font-size: .95rem; }
 .edu-row .meta { font-family: var(--font-mono); font-size: .8125rem; color: var(--ink-2); white-space: nowrap; }
 
 /* ---------- Contact ---------- */
@@ -290,13 +265,11 @@ section { scroll-margin-top: 96px; }
 
 /* ============================================================
    MOTION: driven by GSAP + Lenis (see src/lib/motion.ts).
-   CSS only keeps the ticker loop and the reduced-motion fallback.
+   CSS only keeps the reduced-motion fallback.
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .ticker-track { animation: none; }
-  .ticker-toggle { display: none; }
-  .btn, .tip { transition: none; }
+  .btn, .stage { transition: none; }
   .btn:hover, .btn:active { transform: none; }
 }
 
@@ -305,8 +278,7 @@ section { scroll-margin-top: 96px; }
    ============================================================ */
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: minmax(0, 1fr); align-items: start; }
-  .about-grid { grid-template-columns: minmax(0, 1fr); gap: .8rem; }
-  .kits { grid-template-columns: minmax(0, 1fr); }
+  .kit-grid { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 760px) {
   .header-inner { flex-wrap: wrap; height: auto; gap: 0 1rem; padding-block: .5rem; }
@@ -328,7 +300,7 @@ section { scroll-margin-top: 96px; }
 .card--feature { grid-column: 1 / -1; background: var(--navy); border-color: var(--line-navy); }
 .card--feature h3 { color: var(--paper); font-size: 1.3rem; }
 .card--feature p { color: var(--on-navy-2); max-width: 46rem; }
-.card--feature .tag { color: var(--accent); }
+.card--feature .tags { color: var(--accent); }
 
 /* ============================================================
    HOVER: mouse and trackpad only. Touch screens fake a hover on tap
@@ -342,13 +314,65 @@ section { scroll-margin-top: 96px; }
   .btn--ghost:hover { border-color: var(--accent-deep); color: var(--accent-deep); }
   .contact .btn--solid:hover { background: var(--accent-bright); border-color: var(--accent-bright); }
   .contact .btn--ghost:hover { border-color: var(--accent); color: var(--accent); }
-  .ticker-toggle:hover { color: var(--accent-deep); }
-  .ticker:hover .ticker-track { animation-play-state: paused; }
-  .col:hover .bar { filter: brightness(1.12); }
-  .col:hover .tip { opacity: 1; transform: translateX(-50%) translateY(0); transition-delay: .5s; }
-  .col:nth-last-child(-n+2):hover .tip { transform: translateY(0); }
+  .col:hover .bar { filter: brightness(1.15); }
+  .past-job summary:hover .past-title { color: var(--accent-deep); }
+  .nav-cta:hover { background: var(--navy); }
+  .contact .copy:hover { border-color: var(--accent); color: var(--accent); }
 }
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: reduce) {
   .btn:hover, .btn:hover:active { transform: none; }
-  .col:hover .tip { transition-delay: 0s; }
+}
+
+/* ============================================================
+   REDESIGN 2026-11-27 (UX laws)
+   ============================================================ */
+/* Header: nav with Contact as the distinct last item; local time sits before the nav */
+.clock { order: 1; margin-left: auto; }
+.site-nav { order: 2; }
+.nav-cta {
+  font-size: .9375rem; font-weight: 600; text-decoration: none; color: var(--paper) !important;
+  background: var(--ink); border-radius: 999px; padding: .45rem 1rem !important; border: 0 !important;
+  transition: background-color .2s ease;
+}
+
+/* Hero */
+.hero-copy { align-self: center; }
+
+/* Work: current role open, earlier roles collapsed */
+.past { margin-top: 1.2rem; border-top: 1px solid var(--line); }
+.past-job { border-bottom: 1px solid var(--line); }
+.past-job summary {
+  list-style: none; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: baseline;
+  gap: .3rem 1.5rem; padding: 1.1rem 2rem 1.1rem 0; position: relative;
+}
+.past-job summary::-webkit-details-marker { display: none; }
+.past-job summary::after {
+  content: "+"; position: absolute; right: .2rem; top: 1rem; font-size: 1.25rem; line-height: 1; color: var(--accent-deep);
+  transition: transform .2s var(--ease-out);
+}
+.past-job[open] summary::after { transform: rotate(45deg); }
+.past-title { font-weight: 600; transition: color .2s; }
+.past-org { color: var(--ink-2); font-size: .9375rem; }
+.past-job .period { font-family: var(--font-mono); font-size: .8125rem; color: var(--ink-2); white-space: nowrap; }
+.past-job ul { list-style: none; display: grid; gap: .55rem; color: var(--ink-2); padding: 0 0 1.3rem; max-width: 48rem; }
+.past-job li { padding-left: 1.4rem; position: relative; }
+.past-job li::before { content: ""; position: absolute; left: 0; top: .8em; width: .7em; height: 2px; background: var(--accent-deep); }
+
+/* Contact: the end of the page, one big address, copy with confirmation */
+.mail-row { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.2rem; margin-top: 1.8rem; }
+.mail-big {
+  font-family: var(--font-display); font-weight: 700; font-size: clamp(1.25rem, 3.2vw, 1.9rem); color: var(--paper);
+  text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 6px;
+  overflow-wrap: anywhere;
+}
+.contact .copy { min-height: 40px; font-size: .875rem; }
+.contact .copy.is-done { border-color: var(--gain); color: #7FE0B9; }
+.contact-foot { margin-top: 1.6rem; font-size: .9375rem; color: var(--on-navy-3) !important; }
+
+@media (max-width: 760px) {
+  .clock { display: none; }
+  .site-nav { gap: .9rem; justify-content: flex-start; }
+  .nav-cta { margin-left: auto; }
+  .past-job summary { grid-template-columns: minmax(0, 1fr); padding-right: 2rem; }
+  .stage { min-height: 9rem; }
 }

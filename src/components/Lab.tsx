@@ -3,22 +3,15 @@ import { SectionHead } from './SectionHead';
 
 export function Lab() {
   return (
-    <section className="section" id="lab" style={{ paddingTop: 0 }}>
+    <section className="section" id="lab">
       <div className="wrap">
-        <SectionHead title="Things I build after the market closes." />
-        <p className="lab-note reveal">Personal projects, built for fun, kept because they turned out useful.</p>
+        <SectionHead title="Things I build after the market closes." intro="Personal projects, built for fun, kept because they turned out useful. The rule of the lab: if a task repeats twice, it gets a script." />
         <div className="cards">
           {PROJECTS.map((p) => (
             <article className={`card${p.feature ? ' card--feature' : ''} reveal`} key={p.title}>
               <h3>{p.title}</h3>
               <p>{p.body}</p>
-              <div className="tags">
-                {p.tags.map((t) => (
-                  <span className="tag" key={t}>
-                    {t}
-                  </span>
-                ))}
-              </div>
+              <p className="tags">{p.tags.join(', ')}</p>
             </article>
           ))}
         </div>

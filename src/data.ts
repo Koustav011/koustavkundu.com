@@ -5,34 +5,25 @@ export const LINKEDIN = 'https://www.linkedin.com/in/koustav-kundu-082228120/';
 export const CAL_LINK = 'koustav-kundu-qmio3w';
 
 export const NAV = [
-  { id: 'about', label: 'About' },
   { id: 'work', label: 'Work' },
   { id: 'lab', label: 'Lab' },
-  { id: 'education', label: 'Education' },
-  { id: 'contact', label: 'Contact' },
+  { id: 'toolkit', label: 'Toolkit' },
 ];
 
 /** Career waterfall: grow = years in role (column width), h = scope (bar height). */
 export type BarKind = 'solid' | 'outline' | 'accent' | 'next';
-export const CAREER: { grow: number; h: number; kind: BarKind; tip: string; label: [string, string] }[] = [
-  { grow: 2.7, h: 34, kind: 'solid', tip: 'Associate · Retail Banking & Custody Ops', label: ['’16-’19', 'TCS'] },
-  { grow: 3, h: 52, kind: 'outline', tip: 'MBA (Finance) · Symbiosis, Pune', label: ['’19-’22', 'MBA'] },
-  { grow: 0.25, h: 60, kind: 'solid', tip: 'Finance Intern · Financial Analyst', label: ['’21', 'Tradeify'] },
-  { grow: 4.4, h: 86, kind: 'accent', tip: 'Product Manager · Business Loans Group', label: ['’22-now', 'ICICI'] },
-  { grow: 1, h: 100, kind: 'next', tip: 'Open to what’s next', label: ['next', '↗'] },
-];
-
-export const TICKER = [
-  'Business loans',
-  'Product strategy',
-  'Stakeholder mgmt',
-  'Python',
-  'Raspberry Pi',
-  'UAT',
-  'NSE / BSE',
-  'Automation',
-  'MIS & dashboards',
-  'Telegram bots',
+export type Stage = { grow: number; h: number; kind: BarKind; role: string; where: string; when: string; line: string; label: [string, string] };
+export const CAREER: Stage[] = [
+  { grow: 2.7, h: 34, kind: 'solid', role: 'Associate, Retail Banking and Custody Operations', where: 'TCS, Gurugram', when: '2016 to 2019',
+    line: 'Learned how banks actually move money: due diligence, maker-checker, MIS and the controls behind every transaction.', label: ['’16-’19', 'TCS'] },
+  { grow: 3, h: 52, kind: 'outline', role: 'MBA in Finance', where: 'Symbiosis Institute of Management Studies, Pune', when: '2019 to 2022',
+    line: 'Moved from operations towards product and credit.', label: ['’19-’22', 'MBA'] },
+  { grow: 0.25, h: 60, kind: 'solid', role: 'Finance Intern, Financial Analyst', where: 'Tradeify India, Pune', when: '2021',
+    line: 'Built the financial models behind the P&L and balance sheet.', label: ['’21', 'Tradeify'] },
+  { grow: 4.4, h: 86, kind: 'accent', role: 'Product Manager, Business Loans Group', where: 'ICICI Bank, Mumbai', when: '2022 to now',
+    line: 'Own the renewals portfolio and the digital journeys around it: Smart Top-Up, Saral-Vridhi and an automated portfolio waterfall.', label: ['’22-now', 'ICICI'] },
+  { grow: 1, h: 100, kind: 'next', role: 'What’s next', where: 'Open to conversations', when: '',
+    line: 'Product roles in lending, credit or fintech, where operations knowledge and a habit of automating things both count.', label: ['next', '↗'] },
 ];
 
 export type Job = { title: string; period: string; org: string; now?: boolean; points: string[] };
@@ -91,6 +82,9 @@ export const PROJECTS: { title: string; body: string; tags: string[]; feature?: 
   },
 ];
 
+export const WORK_INTRO =
+  'I started on the operations floor and moved to the product side after an MBA. I like the unglamorous middle of product work: getting policy, tech and business to agree on the same file format.';
+
 export const KITS = [
   {
     title: 'Product & banking',
@@ -107,7 +101,7 @@ export const KITS = [
   },
   {
     title: 'Tech & tinkering',
-    chips: ['Python', 'Pandas / NumPy', 'SQL', 'Excel', 'REST APIs', 'Linux / Raspberry Pi', 'Git'],
+    chips: ['Python', 'Pandas and NumPy', 'SQL', 'Excel', 'REST APIs', 'Linux and Raspberry Pi', 'ESP32 / C++', 'Git'],
   },
 ];
 
